@@ -20,4 +20,9 @@ class Controller extends BaseController
 
         return Inertia::render('Home');
     }
+
+    public function test() 
+    {
+        dd(1);
+    }
 }

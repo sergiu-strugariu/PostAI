@@ -24,7 +24,7 @@ import { router } from '@inertiajs/vue3';
                             <template #trigger>
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-gray-400 focus:outline-none focus:bg-gray-900 active:bg-gray-900 transition ease-in-out duration-150">
                                         {{ $page.props.auth.user.current_team ? $page.props.auth.user.current_team.name : 'No company selected' }}
 
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -39,11 +39,11 @@ import { router } from '@inertiajs/vue3';
                             <template #content>
                                 <div class="w-60">
                                     <!-- Team Management -->
-                                    <div v-if="$page.props.auth.user.current_team" class="block px-4 py-2 text-xs text-gray-400">
+                                    <div v-if="$page.props.auth.user.current_team" class="block px-4 py-2 text-xs text-white">
                                         Manage Company
                                     </div>
 
-                                    <DropdownLink v-if="$page.props.auth.user.current_team" :href="route('spark.portal')">
+                                    <DropdownLink  v-if="$page.props.auth.user.current_team" :href="route('spark.portal')">
                                         Subscriptions
                                     </DropdownLink>
 
@@ -58,16 +58,16 @@ import { router } from '@inertiajs/vue3';
 
                                     <!-- Team Switcher -->
                                     <template v-if="$page.props.auth.user.all_teams.length > 0">
-                                        <div class="border-t border-gray-200" />
+                                        <div class="border-t border-gray-600" />
 
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                        <div class="block px-4 py-2 text-xs text-white">
                                             Switch Company
                                         </div>
 
                                         <template v-for="team in $page.props.auth.user.all_teams" :key="team.id">
                                             <form @submit.prevent="switchToTeam(team)">
                                                 <DropdownLink as="button">
-                                                    <div class="flex items-center">
+                                                    <div class="flex items-center text-gray-400">
                                                         <svg v-if="team.id == $page.props.auth.user.current_team_id"
                                                             class="me-2 h-5 w-5 text-green-400"
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -98,7 +98,7 @@ import { router } from '@inertiajs/vue3';
 
                                 <span v-else class="inline-flex rounded-md">
                                     <button type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-gray-400 focus:outline-none focus:bg-gray-900 active:bg-gray-900 transition ease-in-out duration-150">
                                         {{ $page.props.auth.user.name }}
 
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -112,7 +112,7 @@ import { router } from '@inertiajs/vue3';
 
                             <template #content>
                                 <div v-if="$page.props.auth.user.role == 'ADMIN'">
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                    <div class="block px-4 py-2 text-xs text-white">
                                         Admin Management
                                     </div>
 
@@ -121,8 +121,7 @@ import { router } from '@inertiajs/vue3';
                                     </DropdownLink>
                                 </div>
 
-
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <div class="block px-4 py-2 text-xs text-white">
                                     Manage Account
                                 </div>
 
@@ -139,11 +138,10 @@ import { router } from '@inertiajs/vue3';
                                     API Tokens
                                 </DropdownLink>
 
-                                <div class="border-t border-gray-200" />
 
                                 <!-- Authentication -->
                                 <form @submit.prevent="logout">
-                                    <DropdownLink as="button">
+                                    <DropdownLink as="button" class="text-white">
                                         Log Out
                                     </DropdownLink>
                                 </form>
