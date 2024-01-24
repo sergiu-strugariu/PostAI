@@ -19,6 +19,12 @@ class Controller extends BaseController
         }
 
         return Inertia::render('Home');
+     }
+    public function chandel() {
+        Handel::create([
+            'handel' => 'test',
+            'team_id' => 1
+        ]);
     }
 
     public function test() 
