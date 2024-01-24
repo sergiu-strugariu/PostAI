@@ -40,11 +40,11 @@ const closeModal = () => {
 <template>
     <ActionSection>
         <template #title>
-            Delete Account
+            <h1 class="text-white">Delete Account</h1>
         </template>
 
         <template #description>
-            Permanently delete your account.
+            <h1 class="text-gray-400">Permanently delete your account.</h1>
         </template>
 
         <template #content>
