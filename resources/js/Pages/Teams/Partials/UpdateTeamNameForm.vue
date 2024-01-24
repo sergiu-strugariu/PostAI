@@ -27,24 +27,24 @@ const updateTeamName = () => {
 <template>
     <FormSection @submitted="updateTeamName">
         <template #title>
-            Team Name
+            Company Name
         </template>
 
         <template #description>
-            The team's name and owner information.
+            The company's name and owner information.
         </template>
 
         <template #form>
             <!-- Team Owner Information -->
             <div class="col-span-6">
-                <InputLabel value="Team Owner" />
+                <InputLabel value="Company Owner" />
 
                 <div class="flex items-center mt-2">
                     <img class="w-12 h-12 rounded-full object-cover" :src="team.owner.profile_photo_url" :alt="team.owner.name">
 
                     <div class="ms-4 leading-tight">
-                        <div class="text-gray-900">{{ team.owner.name }}</div>
-                        <div class="text-gray-700 text-sm">
+                        <div class="text-white">{{ team.owner.name }}</div>
+                        <div class="text-gray-400 text-sm">
                             {{ team.owner.email }}
                         </div>
                     </div>
@@ -53,7 +53,7 @@ const updateTeamName = () => {
 
             <!-- Team Name -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Team Name" />
+                <InputLabel for="name" value="Company Name" />
 
                 <TextInput
                     id="name"

@@ -40,7 +40,7 @@ import { router } from '@inertiajs/vue3';
                                 <div class="w-60">
                                     <!-- Team Management -->
                                     <div v-if="$page.props.auth.user.current_team" class="block px-4 py-2 text-xs text-gray-400">
-                                        Manage Team
+                                        Manage Company
                                     </div>
 
                                     <DropdownLink v-if="$page.props.auth.user.current_team" :href="route('spark.portal')">
@@ -49,11 +49,11 @@ import { router } from '@inertiajs/vue3';
 
                                     <!-- Team Settings -->
                                     <DropdownLink v-if="$page.props.auth.user.current_team" :href="route('teams.show', $page.props.auth.user.current_team)">
-                                        Team Settings
+                                        Company Settings
                                     </DropdownLink>
 
                                     <DropdownLink v-if="$page.props.jetstream.canCreateTeams && $page.props.auth.user.current_team" :href="route('teams.create')">
-                                        Create New Team
+                                        Create New Company
                                     </DropdownLink>
 
                                     <!-- Team Switcher -->
@@ -61,7 +61,7 @@ import { router } from '@inertiajs/vue3';
                                         <div class="border-t border-gray-200" />
 
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Switch Teams
+                                            Switch Company
                                         </div>
 
                                         <template v-for="team in $page.props.auth.user.all_teams" :key="team.id">

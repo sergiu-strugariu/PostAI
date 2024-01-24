@@ -72,7 +72,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
                                         <div class="w-60">
                                             <!-- Team Management -->
                                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                                Manage Team
+                                                Manage Company
                                             </div>
 
                                             <DropdownLink :href="route('spark.portal')">
@@ -81,12 +81,12 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 
                                             <!-- Team Settings -->
                                             <DropdownLink :href="route('teams.show', $page.props.auth.user.current_team)">
-                                                Team Settings
+                                                Company Settings
                                             </DropdownLink>
 
                                             <DropdownLink v-if="$page.props.jetstream.canCreateTeams"
                                                 :href="route('teams.create')">
-                                                Create New Team
+                                                Create New Company
                                             </DropdownLink>
 
                                             <!-- Team Switcher -->
@@ -94,7 +94,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
                                                 <div class="border-t border-gray-200" />
 
                                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                                    Switch Teams
+                                                    Switch Company
                                                 </div>
 
                                                 <template v-for="team in $page.props.auth.user.all_teams" :key="team.id">
@@ -281,18 +281,18 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
                                 <div class="border-t border-gray-200" />
 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    Manage Team
+                                    Manage Company
                                 </div>
 
                                 <!-- Team Settings -->
                                 <ResponsiveNavLink :href="route('teams.show', $page.props.auth.user.current_team)"
                                     :active="route().current('teams.show')">
-                                    Team Settings
+                                    Company Settings
                                 </ResponsiveNavLink>
 
                                 <ResponsiveNavLink v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')"
                                     :active="route().current('teams.create')">
-                                    Create New Team
+                                    Create New Company
                                 </ResponsiveNavLink>
 
                                 <!-- Team Switcher -->
@@ -300,7 +300,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
                                     <div class="border-t border-gray-200" />
 
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        Switch Teams
+                                        Switch Company
                                     </div>
 
                                     <template v-for="team in $page.props.auth.user.all_teams" :key="team.id">
