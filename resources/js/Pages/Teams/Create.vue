@@ -1,10 +1,10 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
+import UserLayout from '@/Layouts/UserLayout.vue';
 import CreateTeamForm from '@/Pages/Teams/Partials/CreateTeamForm.vue';
 </script>
 
 <template>
-    <AppLayout title="Create Team">
+    <UserLayout title="Create Team">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Create Team
@@ -16,5 +16,5 @@ import CreateTeamForm from '@/Pages/Teams/Partials/CreateTeamForm.vue';
                 <CreateTeamForm />
             </div>
         </div>
-    </AppLayout>
+    </UserLayout>
 </template>

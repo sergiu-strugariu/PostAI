@@ -7,7 +7,7 @@ import { router } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <body class="body bg-black min-h-screen ">
+    <body class="body bg-black min-h-screen">
         <div class="fixed w-full z-30 flex bg-black bg-opacity-50 p-2 items-center justify-center h-16 px-10">
             <div
                 class="logo ml-12 transform ease-in-out duration-500 flex-none h-full flex items-center justify-center text-white font-extrabold">
@@ -25,7 +25,7 @@ import { router } from '@inertiajs/vue3';
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                        {{ $page.props.auth.user.current_team.name }}
+                                        {{ $page.props.auth.user.current_team ? $page.props.auth.user.current_team.name : 'No company selected' }}
 
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -39,25 +39,25 @@ import { router } from '@inertiajs/vue3';
                             <template #content>
                                 <div class="w-60">
                                     <!-- Team Management -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                    <div v-if="$page.props.auth.user.current_team" class="block px-4 py-2 text-xs text-gray-400">
                                         Manage Team
                                     </div>
 
-                                    <DropdownLink :href="route('spark.portal')">
+                                    <DropdownLink v-if="$page.props.auth.user.current_team" :href="route('spark.portal')">
                                         Subscriptions
                                     </DropdownLink>
 
                                     <!-- Team Settings -->
-                                    <DropdownLink :href="route('teams.show', $page.props.auth.user.current_team)">
+                                    <DropdownLink v-if="$page.props.auth.user.current_team" :href="route('teams.show', $page.props.auth.user.current_team)">
                                         Team Settings
                                     </DropdownLink>
 
-                                    <DropdownLink v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')">
+                                    <DropdownLink v-if="$page.props.jetstream.canCreateTeams && $page.props.auth.user.current_team" :href="route('teams.create')">
                                         Create New Team
                                     </DropdownLink>
 
                                     <!-- Team Switcher -->
-                                    <template v-if="$page.props.auth.user.all_teams.length > 1">
+                                    <template v-if="$page.props.auth.user.all_teams.length > 0">
                                         <div class="border-t border-gray-200" />
 
                                         <div class="block px-4 py-2 text-xs text-gray-400">
@@ -184,8 +184,8 @@ import { router } from '@inertiajs/vue3';
             </div>
             <!-- MAX SIDEBAR-->
             <div class="max hidden text-white mt-20 flex-col space-y-2 w-full h-[calc(100vh)]">
-                <div
-                    class="hover:ml-4 w-full text-white hover:text-gray-400 cursor-pointer  bg-black bg-opacity-50 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                <a :href="route('home')"
+                    class="hover:ml-2 w-full text-white hover:text-gray-400 cursor-pointer  bg-black bg-opacity-50 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                         stroke="currentColor" class="w-4 h-4">
                         <path strokeLinecap="round" strokeLinejoin="round"
@@ -194,7 +194,7 @@ import { router } from '@inertiajs/vue3';
                     <div>
                         Home
                     </div>
-                </div>
+                </a>
                 <div
                     class="hover:ml-4 w-full text-white hover:text-gray-400 cursor-pointer  bg-black bg-opacity-50 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -265,9 +265,7 @@ import { router } from '@inertiajs/vue3';
         </section>
 
         <div class="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
-            <nav class="flex px-5 py-3 text-white rounded-lg" aria-label="Breadcrumb">
-
-
+            <nav class="px-5 py-3 text-white rounded-lg w-full">
                 <slot />
             </nav>
         </div>
@@ -305,6 +303,8 @@ export default {
         this.moon = document.querySelector(".moon");
         this.sun = document.querySelector(".sun");
         this.image = 'https://ui-avatars.com/api/?name=' + this.$page.props.auth.user.name
+
+        console.log(this.$page.props.auth.user.all_teams);
     },
 
     methods: {
