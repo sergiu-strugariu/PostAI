@@ -148,7 +148,17 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
                                     </template>
 
                                     <template #content>
-                                        <!-- Account Management -->
+                                        <div v-if="$page.props.auth.user.role == 'ADMIN'">
+                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                                Admin Management
+                                            </div>
+
+                                            <DropdownLink :href="route('admin.dashboard')">
+                                                Admin Panel
+                                            </DropdownLink>
+                                        </div>
+
+
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             Manage Account
                                         </div>
@@ -220,11 +230,22 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200" v-if="$page.props.auth.user">
+                        <div class="mb-6" v-if="$page.props.auth.user.role == 'ADMIN'">
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                Admin Management
+                            </div>
+
+                            <DropdownLink :href="route('admin.dashboard')">
+                                Admin Panel
+                            </DropdownLink>
+                        </div>
+
                         <div class="flex items-center px-4">
                             <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 me-3">
                                 <img class="h-10 w-10 rounded-full object-cover"
                                     :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
                             </div>
+
 
                             <div>
                                 <div class="font-medium text-base text-gray-800">
@@ -234,9 +255,11 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
                                     {{ $page.props.auth.user.email }}
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="mt-3 space-y-1" v-if="$page.props.auth.user.all_teams.length > 1">
+
                             <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
                                 Profile
                             </ResponsiveNavLink>

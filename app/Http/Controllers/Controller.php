@@ -13,6 +13,7 @@ class Controller extends BaseController
 
     public function create()
     {
+        session()->flash('flash.banner', 'Admin: Go back to ');
         return Inertia::render('Home');
     }
 }
