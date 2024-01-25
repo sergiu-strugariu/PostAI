@@ -8,12 +8,14 @@ const style = ref('success');
 const message = ref('');
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
+console.log(style);
 
 watchEffect(async () => {
     style.value = page.props.jetstream.flash?.bannerStyle || 'success';
     message.value = page.props.jetstream.flash?.banner || '';
     show.value = true;
 });
+
 </script>
 
 <template>
