@@ -25,7 +25,8 @@ import { router } from '@inertiajs/vue3';
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-gray-400 focus:outline-none focus:bg-gray-900 active:bg-gray-900 transition ease-in-out duration-150">
-                                        {{ $page.props.auth.user.current_team ? $page.props.auth.user.current_team.name : 'No company selected' }}
+                                        {{ $page.props.auth.user.current_team ? $page.props.auth.user.current_team.name :
+                                            'No company selected' }}
 
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -39,20 +40,24 @@ import { router } from '@inertiajs/vue3';
                             <template #content>
                                 <div class="w-60">
                                     <!-- Team Management -->
-                                    <div v-if="$page.props.auth.user.current_team" class="block px-4 py-2 text-xs text-white">
+                                    <div v-if="$page.props.auth.user.current_team"
+                                        class="block px-4 py-2 text-xs text-white">
                                         Manage Company
                                     </div>
 
-                                    <DropdownLink  v-if="$page.props.auth.user.current_team" :href="route('spark.portal')">
+                                    <DropdownLink v-if="$page.props.auth.user.current_team" :href="route('spark.portal')">
                                         Subscriptions
                                     </DropdownLink>
 
                                     <!-- Team Settings -->
-                                    <DropdownLink v-if="$page.props.auth.user.current_team" :href="route('teams.show', $page.props.auth.user.current_team)">
+                                    <DropdownLink v-if="$page.props.auth.user.current_team"
+                                        :href="route('teams.show', $page.props.auth.user.current_team)">
                                         Company Settings
                                     </DropdownLink>
 
-                                    <DropdownLink v-if="$page.props.jetstream.canCreateTeams && $page.props.auth.user.current_team" :href="route('teams.create')">
+                                    <DropdownLink
+                                        v-if="$page.props.jetstream.canCreateTeams && $page.props.auth.user.current_team"
+                                        :href="route('teams.create')">
                                         Create New Company
                                     </DropdownLink>
 
@@ -98,7 +103,7 @@ import { router } from '@inertiajs/vue3';
 
                                 <span v-else class="inline-flex rounded-md">
                                     <button type="button"
-                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-gray-400 focus:outline-none focus:bg-gray-900 active:bg-gray-900 transition ease-in-out duration-150">
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-gray-400 focus:outline-none focus:bg-gray-900 active:bg-gray-900 transition ease-in-out duration-150">
                                         {{ $page.props.auth.user.name }}
 
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -181,67 +186,78 @@ import { router } from '@inertiajs/vue3';
                 </svg>
             </div>
             <!-- MAX SIDEBAR-->
-            <div class="max hidden text-white mt-20 flex-col space-y-2 w-full h-[calc(100vh)]">
+            <div class="max hidden mt-20 flex-col space-y-2 w-full h-[calc(100vh)]">
                 <a :href="route('home')"
-                    class="hover:ml-2 w-full text-white hover:text-gray-400 cursor-pointer  bg-black bg-opacity-50 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                        stroke="currentColor" class="w-4 h-4">
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    class="flex items-center p-2 text-white rounded-lg bg-gray-700 hover:bg-gray-800 group">
+                    <svg class="w-6 h-6 transition duration-75 group-hover:text-gray-500" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5"
+                            d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z"
+                            fill="#FFF" />
+                        <path
+                            d="M9 17.25C8.58579 17.25 8.25 17.5858 8.25 18C8.25 18.4142 8.58579 18.75 9 18.75H15C15.4142 18.75 15.75 18.4142 15.75 18C15.75 17.5858 15.4142 17.25 15 17.25H9Z"
+                            fill="#FFF" />
                     </svg>
-                    <div>
-                        Home
-                    </div>
+                    <span class="ms-3">Home</span>
                 </a>
-                <div
-                    class="hover:ml-4 w-full text-white hover:text-gray-400 cursor-pointer  bg-black bg-opacity-50 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+
+                <a :href="route('minishop')"
+                    class="flex items-center p-2 text-white rounded-lg bg-gray-700 hover:bg-gray-800 group">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14.5 21.9913V18.5C14.5 17.5654 14.5 17.0981 14.299 16.75C14.1674 16.522 13.978 16.3326 13.75 16.201C13.4019 16 12.9346 16 12 16C11.0654 16 10.5981 16 10.25 16.201C10.022 16.3326 9.83261 16.522 9.70096 16.75C9.5 17.0981 9.5 17.5654 9.5 18.5V21.9913H14.5Z"
+                            fill="#FFF" />
+                        <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5.73204 12C4.84126 12 4.05323 11.6239 3.5 11.0329V14C3.5 17.7712 3.5 19.6568 4.67157 20.8284C5.61466 21.7715 7.02043 21.9554 9.5 21.9913H14.5C16.9796 21.9554 18.3853 21.7715 19.3284 20.8284C20.5 19.6568 20.5 17.7712 20.5 14V11.034C19.9468 11.6244 19.1592 12 18.269 12C16.6973 12 15.3814 10.8091 15.225 9.24523L15.152 8.51733C15.3385 10.382 13.8742 12 12.0003 12C10.139 12 8.6819 10.4038 8.84499 8.55511L8.77598 9.24523C8.6196 10.8091 7.30367 12 5.73204 12ZM14.5 18.5V21.9913H9.5V18.5C9.5 17.5654 9.5 17.0981 9.70096 16.75C9.83261 16.522 10.022 16.3326 10.25 16.201C10.5981 16 11.0654 16 12 16C12.9346 16 13.4019 16 13.75 16.201C13.978 16.3326 14.1674 16.522 14.299 16.75C14.5 17.0981 14.5 17.5654 14.5 18.5Z"
+                            fill="#FFF" />
+                        <path
+                            d="M9.4998 2H14.4998L15.1515 8.51737C15.338 10.382 13.8737 12 11.9998 12C10.1259 12 8.6616 10.382 8.84806 8.51737L9.4998 2Z"
+                            fill="#FFF" />
+                        <path opacity="0.7"
+                            d="M3.33024 5.35133C3.50832 4.46093 3.59736 4.01573 3.7784 3.65484C4.15987 2.89439 4.84628 2.33168 5.66677 2.10675C6.05616 2 6.51017 2 7.4182 2H9.50051L8.77598 9.24527C8.6196 10.8091 7.30367 12 5.73204 12C3.80159 12 2.35373 10.2339 2.73232 8.34093L3.33024 5.35133Z"
+                            fill="#FFF" />
+                        <path opacity="0.7"
+                            d="M20.6703 5.35133C20.4922 4.46093 20.4031 4.01573 20.2221 3.65484C19.8406 2.89439 19.1542 2.33168 18.3337 2.10675C17.9443 2 17.4903 2 16.5823 2H14.5L15.2245 9.24527C15.3809 10.8091 16.6968 12 18.2685 12C20.1989 12 21.6468 10.2339 21.2682 8.34093L20.6703 5.35133Z"
+                            fill="#FFF" />
                     </svg>
-                    <div>
-                        Table
-                    </div>
-                </div>
-                <div
-                    class="hover:ml-4 w-full text-white hover:text-gray-400 cursor-pointer  bg-black bg-opacity-50 p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
-                    </svg>
-                    <div>
-                        Graph
-                    </div>
-                </div>
+                    <span class="ms-3">Mini Shop</span>
+                </a>
             </div>
 
             <div class="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
-                <div
-                    class="hover:ml-4 justify-end pr-5 text-white hover:text-purple-500  w-full bg-black bg-opacity-50 p-3 rounded-full transform ease-in-out duration-300 flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                        stroke="currentColor" class="w-4 h-4">
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                <a :href="route('home')"
+                    class="hover:ml-8 justify-end  ml-2 text-gray-500 w-full bg-gray-800 p-3 rounded-lg shadow-xl transform ease-in-out duration-300 flex">
+                    <svg class="w-6 h-6 transition duration-75 group-hover:text-gray-500" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5"
+                            d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z"
+                            fill="#FFF" />
+                        <path
+                            d="M9 17.25C8.58579 17.25 8.25 17.5858 8.25 18C8.25 18.4142 8.58579 18.75 9 18.75H15C15.4142 18.75 15.75 18.4142 15.75 18C15.75 17.5858 15.4142 17.25 15 17.25H9Z"
+                            fill="#FFF" />
                     </svg>
-                </div>
-                <div
-                    class="hover:ml-4 justify-end pr-5 text-white hover:text-purple-500  w-full bg-black bg-opacity-50 p-3 rounded-full transform ease-in-out duration-300 flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                </a>
+
+                <a :href="route('minishop')"
+                    class="hover:ml-8 justify-end  ml-2 text-gray-500 w-full bg-gray-800 p-3 rounded-lg shadow-xl transform ease-in-out duration-300 flex">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14.5 21.9913V18.5C14.5 17.5654 14.5 17.0981 14.299 16.75C14.1674 16.522 13.978 16.3326 13.75 16.201C13.4019 16 12.9346 16 12 16C11.0654 16 10.5981 16 10.25 16.201C10.022 16.3326 9.83261 16.522 9.70096 16.75C9.5 17.0981 9.5 17.5654 9.5 18.5V21.9913H14.5Z"
+                            fill="#FFF" />
+                        <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5.73204 12C4.84126 12 4.05323 11.6239 3.5 11.0329V14C3.5 17.7712 3.5 19.6568 4.67157 20.8284C5.61466 21.7715 7.02043 21.9554 9.5 21.9913H14.5C16.9796 21.9554 18.3853 21.7715 19.3284 20.8284C20.5 19.6568 20.5 17.7712 20.5 14V11.034C19.9468 11.6244 19.1592 12 18.269 12C16.6973 12 15.3814 10.8091 15.225 9.24523L15.152 8.51733C15.3385 10.382 13.8742 12 12.0003 12C10.139 12 8.6819 10.4038 8.84499 8.55511L8.77598 9.24523C8.6196 10.8091 7.30367 12 5.73204 12ZM14.5 18.5V21.9913H9.5V18.5C9.5 17.5654 9.5 17.0981 9.70096 16.75C9.83261 16.522 10.022 16.3326 10.25 16.201C10.5981 16 11.0654 16 12 16C12.9346 16 13.4019 16 13.75 16.201C13.978 16.3326 14.1674 16.522 14.299 16.75C14.5 17.0981 14.5 17.5654 14.5 18.5Z"
+                            fill="#FFF" />
+                        <path
+                            d="M9.4998 2H14.4998L15.1515 8.51737C15.338 10.382 13.8737 12 11.9998 12C10.1259 12 8.6616 10.382 8.84806 8.51737L9.4998 2Z"
+                            fill="#FFF" />
+                        <path opacity="0.7"
+                            d="M3.33024 5.35133C3.50832 4.46093 3.59736 4.01573 3.7784 3.65484C4.15987 2.89439 4.84628 2.33168 5.66677 2.10675C6.05616 2 6.51017 2 7.4182 2H9.50051L8.77598 9.24527C8.6196 10.8091 7.30367 12 5.73204 12C3.80159 12 2.35373 10.2339 2.73232 8.34093L3.33024 5.35133Z"
+                            fill="#FFF" />
+                        <path opacity="0.7"
+                            d="M20.6703 5.35133C20.4922 4.46093 20.4031 4.01573 20.2221 3.65484C19.8406 2.89439 19.1542 2.33168 18.3337 2.10675C17.9443 2 17.4903 2 16.5823 2H14.5L15.2245 9.24527C15.3809 10.8091 16.6968 12 18.2685 12C20.1989 12 21.6468 10.2339 21.2682 8.34093L20.6703 5.35133Z"
+                            fill="#FFF" />
                     </svg>
-                </div>
-                <div
-                    class="hover:ml-4 justify-end pr-5 text-white hover:text-purple-500  w-full bg-black bg-opacity-50 p-3 rounded-full transform ease-in-out duration-300 flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
-                    </svg>
-                </div>
+                </a>
             </div>
         </aside>
 
@@ -301,8 +317,6 @@ export default {
         this.moon = document.querySelector(".moon");
         this.sun = document.querySelector(".sun");
         this.image = 'https://ui-avatars.com/api/?name=' + this.$page.props.auth.user.name
-
-        console.log(this.$page.props.auth.user.all_teams);
     },
 
     methods: {
@@ -404,5 +418,4 @@ export default {
     100% {
         transform: translateY(250px) translateX(300px) rotate(1turn);
     }
-}
-</style>
+}</style>

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('mini_shops', function (Blueprint $table) {
             $table->id();
-            $table->integer('likes_price');
-            $table->integer('comments_price');
-            $table->integer('shares_price');
-            $table->integer('saves_price');
+            $table->float('likes_price');
+            $table->float('comments_price');
+            $table->float('shares_price');
+            $table->float('saves_price');
             $table->timestamps();
         });
     }

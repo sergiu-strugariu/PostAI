@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MiniShop;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -21,8 +22,20 @@ class Controller extends BaseController
         return Inertia::render('Home');
     }
 
-    public function test() 
+    public function minishop()
     {
-        dd(1);
+
+        $minishop = MiniShop::first();
+        $likes = $minishop->likes_price;
+        $comments = $minishop->comments_price;
+        $shares = $minishop->shares_price;
+        $saved = $minishop->saves_price;
+
+        return Inertia::render("UserDashboard/Pages/MiniShop", [
+            'likes_price' => $likes,
+            'comments_price' => $comments,
+            'shares_price' => $shares,
+            'saves_price' => $saved,
+        ]);
     }
 }

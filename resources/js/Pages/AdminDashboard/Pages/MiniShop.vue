@@ -29,7 +29,7 @@ import { useForm } from '@inertiajs/vue3';
                             </div>
 
                             <div class="px-6 mt-4">
-                                <input type="number" v-model="form.likes_price" min="1" :placeholder="likes_price"
+                                <input type="text" v-model="form.likes_price" :placeholder="likes_price"
                                     class="border p-2 rounded ring-0 border-none w-full">
                             </div>
                         </div>
@@ -45,7 +45,7 @@ import { useForm } from '@inertiajs/vue3';
                             </div>
 
                             <div class="px-6 mt-4">
-                                <input type="number" v-model="form.comments_price" min="1" :placeholder="comments_price"
+                                <input type="text" v-model="form.comments_price" :placeholder="comments_price"
                                     class="border p-2 rounded ring-0 border-none w-full">
                             </div>
                         </div>
@@ -62,7 +62,7 @@ import { useForm } from '@inertiajs/vue3';
                             </div>
 
                             <div class="px-6 mt-4">
-                                <input type="number" v-model="form.shares_price" min="1" :placeholder="shares_price"
+                                <input type="text" v-model="form.shares_price" :placeholder="shares_price"
                                     class="border p-2 rounded ring-0 border-none w-full">
                             </div>
                         </div>
@@ -80,7 +80,7 @@ import { useForm } from '@inertiajs/vue3';
                             </div>
 
                             <div class="px-6 mt-4">
-                                <input type="number" v-model="form.saves_price" min="1" :placeholder="saves_price"
+                                <input type="text" v-model="form.saves_price" :placeholder="saves_price"
                                     class="border p-2 rounded ring-0 border-none w-full">
                             </div>
                         </div>

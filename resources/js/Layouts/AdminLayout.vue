@@ -85,7 +85,6 @@ import Banner from '@/Components/Banner.vue';
                                     clip-rule="evenodd" />
                             </svg>
                         </span>
-
                     </div>
                     <div id="1" class="origin-top-right hidden left-0 mt-2 mb-2 w-full rounded-md shadow-lg">
                         <div class="rounded-md bg-gray-200 shadow-xs">
