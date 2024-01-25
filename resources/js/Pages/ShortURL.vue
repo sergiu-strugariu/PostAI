@@ -103,15 +103,11 @@ export default {
 
     methods: {
         submit() {
-            var parser = new DOMParser();
-            var document = parser.parseFromString(this.form.pixel_script, 'text/html');
-
-            console.log(document.firstChild.parentNode);
-            // this.form.post(route('shortUrlStore'), {
-            //     onSuccess: () => [],
-            //     onError: (error) => [],
-            //     onFinish: () => [],
-            // });
+            this.form.post(route('shortUrlStore'), {
+                onSuccess: () => [],
+                onError: (error) => [],
+                onFinish: () => [],
+            });
         },
     },
 }

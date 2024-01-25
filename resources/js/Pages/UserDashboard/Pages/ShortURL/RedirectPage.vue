@@ -39,7 +39,8 @@
 export default {
     props: {
         company: String,
-        original_url: String
+        original_url: String,
+        pixel_script: String
     },
 
     data() {
@@ -49,9 +50,10 @@ export default {
     },
 
     mounted() {
-        setTimeout(() => {
-            window.location.href = this.original_url;
-        }, 2000);
+        console.log(this.$page.props);
+        // setTimeout(() => {
+        //     window.location.href = this.original_url;
+        // }, 2000);
     },
 
     methods: {

@@ -24,6 +24,8 @@ class ShortURLController extends Controller
 
     public function shortUrlStore(Request $request)
     {
+
+        dd(1);
         $request->validate([
             'original_url' => ['required', 'url'],
         ]);
@@ -88,7 +90,8 @@ class ShortURLController extends Controller
 
         return Inertia::render("UserDashboard/Pages/ShortURL/RedirectPage", [
             'company' => $team->name,
-            'original_url' => $shortUrl->original_url
+            'original_url' => $shortUrl->original_url,
+            'pixel_script' => $shortUrl->pixel_script
         ]);
     }
 }
