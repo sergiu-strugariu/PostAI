@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\MiniShopController;
-use App\Http\Controllers\ShortURLController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controller::class, 'index'])->name('home');
