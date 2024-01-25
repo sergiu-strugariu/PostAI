@@ -2,12 +2,6 @@
 
 namespace App\Models;
 
-<<<<<<< HEAD
-use App\Models\Handel;
-=======
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
->>>>>>> 94676d6015db2aeded6d560b5d8ffd5442d8f9ee
 use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
@@ -48,14 +42,8 @@ class Team extends JetstreamTeam
         'deleted' => TeamDeleted::class,
     ];
 
-<<<<<<< HEAD
-    public function handels()
-    {
-        return $this->hasMany(Handel::class);
-=======
-    public function shorturl(): HasMany
+    public function shorturl()
     {
         return $this->hasMany(ShortURL::class);
->>>>>>> 94676d6015db2aeded6d560b5d8ffd5442d8f9ee
     }
 }
