@@ -2,7 +2,10 @@
 import UserLayout from '@/Layouts/UserLayout.vue';
 
 import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/InputError.vue';
+
 import Options from './MiniShop/Options.vue';
+import PrimaryButton from '@/Components/SecondaryButton.vue';
 
 import { useForm } from '@inertiajs/vue3';
 
@@ -16,7 +19,7 @@ import { useForm } from '@inertiajs/vue3';
                     Shop
                 </p>
                 <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl text-white">
-                    <span class="text-blue-300">Boost</span> your post in 3 <span class="text-green-300">steps</span>
+                    <span class="text-blue-300">Boost</span> your <span class="text-green-300">post</span>
                 </h1>
             </div>
             <div class="mb-4 w-full">
@@ -29,7 +32,7 @@ import { useForm } from '@inertiajs/vue3';
                 </p>
             </div>
 
-            <div class="rounded-xl" id="step-1" v-if="step == 1">
+            <div class="rounded-xl" id="step-1" v-if="!options">
                 <ul class="space-x-4 md:space-x-8 lg:space-x-12 font-medium flex flex-wrap items-center justify-center">
                     <li>
                         <div @click="this.platform = 'Instagram'"
@@ -117,7 +120,7 @@ import { useForm } from '@inertiajs/vue3';
                         v-model="form.post_url" required autocomplete="post_url" />
                 </div>
 
-                <div v-if="errors" class="mb-4">
+                <div v-if="errors && step == 1" class="mb-4">
                     <div v-if="errors.status" class="bg-gray-700 overflow-hidden shadow-sm rounded-lg mt-4">
                         <div class="p-6 text-white font-bold">
                             {{ errors.message ?? form.errors.post_url }}
@@ -138,9 +141,100 @@ import { useForm } from '@inertiajs/vue3';
             </button>
         </div>
 
-        <div class="mx-auto max-w-7xl rounded-2xl px-2 pb-12">
-            <div v-if="options">
+        <div class="mx-auto max-w-7xl">
+            <div v-if="options && step == 1">
+                <div class="flex justify-center space-x-6">
+                    <button @click="options = null"
+                        class="px-8 py-4 text-sm bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
+                        Change Post
+                    </button>
+                    <button @click="nextStep(2)"
+                        class="px-8 py-4 text-sm bg-gradient-to-r from-red-500 to-purple-900 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
+                        Proceed to checkout
+                    </button>
+                </div>
                 <Options :platform="platform" />
+            </div>
+        </div>
+
+        <div class="mx-auto max-w-4xl">
+            <div v-if="step == 2">
+                <div class="flex justify-center space-x-6">
+                    <button @click="step = 1"
+                        class="px-8 py-4 text-sm bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
+                        Previous
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-4 bg-gray-900 bg-opacity-50 p-4 rounded-2xl" v-if="step == 2">
+                <form @confirmOrder.prevent="confirmOrder">
+                    <div class="px-12 py-4">
+                        <div v-if="errors && step == 2" class="mb-4">
+                            <div v-if="errors.status" class="bg-gray-700 overflow-hidden shadow-sm rounded-lg mt-4">
+                                <div class="p-6 text-white font-bold">
+                                    {{ errors.message ?? form.errors.post_url }}
+                                </div>
+                            </div>
+                            <div v-else class="bg-black bg-opacity-50 overflow-hidden shadow-sm rounded-lg mt-4">
+                                <div class="p-6 text-red-500 font-bold">
+                                    {{ errors.message ?? form.errors.post_url }}
+                                </div>
+                            </div>
+                        </div>
+                        <h1 class="text-4xl text-white">Checkout</h1>
+                        <p class="text-gray-400">Please provide an email addres for contacting you about the order.</p>
+                        <div class="mt-4">
+                            <TextInput id="email" placeholder="Email address" type="email" v-model="form_order.email"
+                                class="mt-1 block w-full bg-gray-800 bg-opacity-50 text-white focus:ring-1 focus:ring-white/80 rounded ring-0 border-none"
+                                required />
+                            <InputError class="mt-2" :message="form_order.errors.email" />
+
+                        </div>
+
+                        <div class="mt-4 mb-4">
+                            <div class="flex justify-between">
+                                <div>Likes</div>
+                                <div>${{ likesValue }}</div>
+                            </div>
+                            <div class="flex justify-between">
+                                <div>Comments</div>
+                                <div>${{ commentsValue }}</div>
+                            </div>
+                            <div class="flex justify-between">
+                                <div>Shares</div>
+                                <div>${{ sharesValue }}</div>
+                            </div>
+                            <div class="flex justify-between">
+                                <div>Saves</div>
+                                <div>${{ savesValue }}</div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="mt-4">
+                            <div class="flex justify-between text-2xl">
+                                <div>Total</div>
+                                <div>${{ total }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-4">
+                        <PrimaryButton @click="confirmOrder()" class="ms-4" :class="{ 'opacity-25': form_order.processing }"
+                            :disabled="form_order.processing">
+                            Confirm
+                        </PrimaryButton>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mx-auto max-w-4xl" v-if="step == 3">
+                <div class="px-12 py-4 bg-gray-900 rounded-2xl">
+                    <h1 class="text-2xl text-green-400">Your order has been place successfully.</h1>
+                    <p class="text-gray-300">We were gonna contact you about the order by email.</p>
+                    <p class="text-gray-300">You can see your order status <a :href="route('minishop.orders')" class="underline">here</a>.</p>
+                </div>
             </div>
         </div>
     </UserLayout>
@@ -163,9 +257,34 @@ export default {
             errors: null,
             options: false,
 
+            likesValue: 0,
+            commentsValue: 0,
+            sharesValue: 0,
+            savesValue: 0,
+
+            likesUnits: 0,
+            commentsUnits: 0,
+            sharesUnits: 0,
+            savesUnits: 0,
+
             form: useForm({
                 post_url: '',
                 platform: '',
+            }),
+
+            form_order: useForm({
+                email: '',
+                post_url: '',
+                likesValue: 0,
+                commentsValue: 0,
+                sharesValue: 0,
+                savesValue: 0,
+
+                likesUnits: 0,
+                commentsUnits: 0,
+                sharesUnits: 0,
+                savesUnits: 0,
+                total: 0,
             }),
         }
     },
@@ -174,12 +293,56 @@ export default {
         handleUrl() {
             this.form.platform = this.platform;
 
-            this.form.post(route('checkUrl'), {
+            this.form.post(route('minishop.checkUrl'), {
                 onSuccess: () => [this.errors = null, this.options = true],
                 onError: (error) => [this.errors = error, this.options = false],
                 onFinish: () => [],
             });
         },
+
+        confirmOrder() {
+            this.form_order.likesValue = this.likesValue;
+            this.form_order.commentsValue = this.commentsValue;
+            this.form_order.sharesValue = this.sharesValue;
+            this.form_order.savesValue = this.savesValue;
+            this.form_order.total = this.total;
+
+            this.form_order.likesUnits = this.likesUnits;
+            this.form_order.commentsUnits = this.commentsUnits;
+            this.form_order.sharesUnits = this.sharesUnits;
+            this.form_order.savesUnits = this.savesUnits;
+
+            this.form_order.post_url = this.form.post_url
+
+            this.form_order.post(route('minishop.order'), {
+                onSuccess: () => [this.errors = null, this.step = 3],
+                onError: (error) => [this.errors = error],
+                onFinish: () => [],
+            });
+        },
+
+        nextStep(step) {
+            switch (step) {
+                case 2:
+                    this.likesValue = parseFloat(document.getElementById('likes').getAttribute('data-price')) || 0;
+                    this.commentsValue = parseFloat(document.getElementById('comments').getAttribute('data-price')) || 0;
+                    this.sharesValue = parseFloat(document.getElementById('shares').getAttribute('data-price')) || 0;
+                    this.savesValue = parseFloat(document.getElementById('saves').getAttribute('data-price')) || 0;
+
+                    this.likesUnits = document.getElementById('likes').getAttribute('data-units') || 0;
+                    this.commentsUnits = document.getElementById('comments').getAttribute('data-units') || 0;
+                    this.sharesUnits = document.getElementById('shares').getAttribute('data-units') || 0;
+                    this.savesUnits = document.getElementById('saves').getAttribute('data-units') || 0;
+
+                    this.total = this.likesValue + this.commentsValue + this.sharesValue + this.savesValue;
+
+                    this.step = 2;
+                    break;
+
+                default:
+                    break;
+            }
+        }
     },
 }
 </script>

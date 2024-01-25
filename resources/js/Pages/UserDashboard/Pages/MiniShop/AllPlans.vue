@@ -17,14 +17,14 @@ import TextInput from '@/Components/TextInput.vue';
                         </svg>
                         <h2 id="product2" class="text-lg font-semibold leading-8 text-white">Likes</h2>
                     </div>
-                    <p class="rounded-full bg-indigo-500 px-2.5 py-1 text-xs font-semibold leading-5 text-white">
+                    <p class="rounded-full bg-indigo-500 px-2.5 py-1 text-xs font-semibold leading-5 text-white" id="likes" :data-price="likes_price" :data-units="likes">
                         $ {{ likes_price }}</p>
                 </div>
                 <p class="mt-4 text-sm leading-6 text-gray-300">The most popular choice. Product details for
                     Product</p>
                 <p class="mt-6 flex items-baseline gap-x-1">
                 <div>
-                    <TextInput id="likes" @input="handleUnits('likes')" placeholder="1000" type="number" min="1"
+                    <TextInput  @input="handleUnits('likes')" placeholder="1000" type="number" min="1"
                         pattern="[1-9][1-9]*"
                         class="mt-1 block w-full bg-black text-white rounded-3xl ring-1 ring-white/30 border-none"
                         v-model="likes" autocomplete="likes" />
@@ -32,10 +32,6 @@ import TextInput from '@/Components/TextInput.vue';
                     <!-- <InputError class="mt-2" :message="likes" /> -->
                 </div>
                 </p>
-                <button aria-describedby="product2"
-                    class="bg-indigo-500 w-full text-white shadow-sm hover:bg-indigo-400 focus-visible:outline-indigo-500 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                    Buy
-                </button>
                 <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-300 xl:mt-10">
                     <li class="flex gap-x-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                             aria-hidden="true" class="h-6 w-5 flex-none text-white">
@@ -62,24 +58,20 @@ import TextInput from '@/Components/TextInput.vue';
                         </svg>
                         <h2 id="product2" class="text-lg font-semibold leading-8 text-white">Comments</h2>
                     </div>
-                    <p class="rounded-full bg-indigo-500 px-2.5 py-1 text-xs font-semibold leading-5 text-white">
+                    <p class="rounded-full bg-indigo-500 px-2.5 py-1 text-xs font-semibold leading-5 text-white" id="comments" :data-price="comments_price" :data-units="comments"> 
                         $ {{ comments_price }}</p>
                 </div>
                 <p class="mt-4 text-sm leading-6 text-gray-300">The most popular choice. Product details for
                     Product</p>
                 <p class="mt-6 flex items-baseline gap-x-1">
                 <div>
-                    <TextInput id="comments" placeholder="1000" type="number" min="1" @input="handleUnits('comments')"
+                    <TextInput placeholder="1000" type="number" min="1" @input="handleUnits('comments')"
                         class="mt-1 block w-full bg-black text-white rounded-3xl ring-1 ring-white/30 border-none"
                         v-model="comments" autocomplete="comments" />
 
                     <!-- <InputError class="mt-2" :message="comments" /> -->
                 </div>
                 </p>
-                <button aria-describedby="product2"
-                    class="bg-indigo-500 w-full text-white shadow-sm hover:bg-indigo-400 focus-visible:outline-indigo-500 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                    Buy
-                </button>
                 <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-300 xl:mt-10">
                     <li class="flex gap-x-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                             aria-hidden="true" class="h-6 w-5 flex-none text-white">
@@ -106,24 +98,20 @@ import TextInput from '@/Components/TextInput.vue';
                         </svg>
                         <h2 id="product2" class="text-lg font-semibold leading-8 text-white">Shares</h2>
                     </div>
-                    <p class="rounded-full bg-indigo-500 px-2.5 py-1 text-xs font-semibold leading-5 text-white">
+                    <p class="rounded-full bg-indigo-500 px-2.5 py-1 text-xs font-semibold leading-5 text-white" id="shares" :data-price="shares_price" :data-units="shares">
                         $ {{ shares_price }}</p>
                 </div>
                 <p class="mt-4 text-sm leading-6 text-gray-300">The most popular choice. Product details for
                     Product</p>
                 <p class="mt-6 flex items-baseline gap-x-1">
                 <div>
-                    <TextInput id="shares" placeholder="1000" type="number" min="1" @input="handleUnits('shares')"
+                    <TextInput placeholder="1000" type="number" min="1" @input="handleUnits('shares')"
                         class="mt-1 block w-full bg-black text-white rounded-3xl ring-1 ring-white/30 border-none"
                         v-model="shares" autocomplete="shares" />
 
                     <!-- <InputError class="mt-2" :message="shares" /> -->
                 </div>
                 </p>
-                <button aria-describedby="product2"
-                    class="bg-indigo-500 w-full text-white shadow-sm hover:bg-indigo-400 focus-visible:outline-indigo-500 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                    Buy
-                </button>
                 <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-300 xl:mt-10">
                     <li class="flex gap-x-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                             aria-hidden="true" class="h-6 w-5 flex-none text-white">
@@ -149,24 +137,20 @@ import TextInput from '@/Components/TextInput.vue';
                         </svg>
                         <h2 id="product2" class="text-lg font-semibold leading-8 text-white">Saves</h2>
                     </div>
-                    <p class="rounded-full bg-indigo-500 px-2.5 py-1 text-xs font-semibold leading-5 text-white">
+                    <p class="rounded-full bg-indigo-500 px-2.5 py-1 text-xs font-semibold leading-5 text-white" id="saves" :data-price="saves_price" :data-units="saves">
                         $ {{ saves_price }}</p>
                 </div>
                 <p class="mt-4 text-sm leading-6 text-gray-300">The most popular choice. Product details for
                     Product</p>
                 <p class="mt-6 flex items-baseline gap-x-1">
                 <div>
-                    <TextInput id="saves" placeholder="1000" type="number" min="1" @input="handleUnits('saves')"
+                    <TextInput placeholder="1000" type="number" min="1" @input="handleUnits('saves')"
                         class="mt-1 block w-full bg-black text-white rounded-3xl ring-1 ring-white/30 border-none"
                         v-model="saves" autocomplete="saves" />
 
                     <!-- <InputError class="mt-2" :message="saves" /> -->
                 </div>
                 </p>
-                <button aria-describedby="product2"
-                    class="bg-indigo-500 w-full text-white shadow-sm hover:bg-indigo-400 focus-visible:outline-indigo-500 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
-                    Buy
-                </button>
                 <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-300 xl:mt-10">
                     <li class="flex gap-x-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                             aria-hidden="true" class="h-6 w-5 flex-none text-white">
@@ -206,7 +190,6 @@ export default {
     },
 
     methods: {
-
         handleUnits(unit) {
             switch (unit) {
                 case 'likes':
@@ -226,26 +209,6 @@ export default {
                     break;
             }
         },
-
-        confirmPurchase(purchase) {
-            switch (purchase) {
-                case 'likes':
-
-                    break;
-                case 'comments':
-
-                    break;
-                case 'shares':
-
-                    break;
-                case 'saves':
-
-                    break;
-
-                default:
-                    break;
-            }
-        }
     },
 }
 </script>

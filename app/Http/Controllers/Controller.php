@@ -13,29 +13,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function home()
+    public function index()
     {
         if (Auth::check()) {
             return Inertia::render('UserDashboard/Dashboard');
         }
 
         return Inertia::render('Home');
-    }
-
-    public function minishop()
-    {
-
-        $minishop = MiniShop::first();
-        $likes = $minishop->likes_price;
-        $comments = $minishop->comments_price;
-        $shares = $minishop->shares_price;
-        $saved = $minishop->saves_price;
-
-        return Inertia::render("UserDashboard/Pages/MiniShop", [
-            'likes_price' => $likes,
-            'comments_price' => $comments,
-            'shares_price' => $shares,
-            'saves_price' => $saved,
-        ]);
     }
 }

@@ -10,7 +10,7 @@ import { useForm } from '@inertiajs/vue3';
 <template>
     <AdminLayout>
         <div class="max-w-7xl mx-auto">
-            <h1 class="text-4xl font-extrabold">Mini Shop Dashboard</h1>
+            <h1 class="text-4xl font-extrabold">Mini Shop Pricing</h1>
 
             <div class="bg-white rounded-xl p-4 mt-6">
                 <h1 class="text-xl">Update Prices</h1>

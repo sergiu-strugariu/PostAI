@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\MiniShop;
+use App\Models\MiniShopOrders;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +16,7 @@ class DashboardController extends Controller
         return Inertia::render('AdminDashboard/Dashboard');
     }
 
-    public function minishop()
+    public function minishopPricing()
     {
         // session()->flash('flash.banner', 'Admin: Go back to ');
 
@@ -33,7 +34,25 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function minishopStore(Request $request)
+    public function minishopOrders()
+    {
+        $orders = MiniShopOrders::all();
+        return Inertia::render('AdminDashboard/Pages/Orders',[
+            'orders' => $orders
+        ]);
+    }
+
+    public function minishopOrdersStore(Request $request)
+    {
+        $order = MiniShopOrders::where('id', $request->order_id)->first();
+        $order->status = $request->status;
+        $order->save();
+        
+        session()->flash('flash.banner', 'The order updated successfully.');
+        return redirect()->back();
+    }
+
+    public function minishopStorePricing(Request $request)
     {
         $minishop = MiniShop::first();
 
