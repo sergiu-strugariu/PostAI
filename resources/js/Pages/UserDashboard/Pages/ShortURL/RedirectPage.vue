@@ -44,7 +44,7 @@ export default {
 
     data() {
         return {
-            app_name: import.meta.env.VITE_APP_NAME || 'Laravel'
+            app_name: import.meta.env.VITE_APP_NAME
         }
     },
 
@@ -99,65 +99,6 @@ export default {
 @keyframes traverse-down-right {
     100% {
         transform: translateY(250px) translateX(300px) rotate(1turn);
-    }
-}
-
-
-.rainbow {
-    animation: rainbow 12s linear;
-    animation-iteration-count: infinite;
-}
-
-
-@keyframes rainbow {
-
-    100%,
-    0% {
-        color: rgb(255, 0, 0);
-    }
-
-    8% {
-        color: rgb(255, 127, 0);
-    }
-
-    16% {
-        color: rgb(255, 255, 0);
-    }
-
-    25% {
-        color: rgb(127, 255, 0);
-    }
-
-    33% {
-        color: rgb(0, 255, 0);
-    }
-
-    41% {
-        color: rgb(0, 255, 127);
-    }
-
-    50% {
-        color: rgb(0, 255, 255);
-    }
-
-    58% {
-        color: rgb(0, 127, 255);
-    }
-
-    66% {
-        color: rgb(0, 0, 255);
-    }
-
-    75% {
-        color: rgb(127, 0, 255);
-    }
-
-    83% {
-        color: rgb(255, 0, 255);
-    }
-
-    91% {
-        color: rgb(255, 0, 127);
     }
 }
 </style>
