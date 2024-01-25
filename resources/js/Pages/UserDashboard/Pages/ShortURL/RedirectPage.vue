@@ -50,10 +50,14 @@ export default {
     },
 
     mounted() {
-        console.log(this.$page.props);
-        // setTimeout(() => {
-        //     window.location.href = this.original_url;
-        // }, 2000);
+        const parser = new DOMParser();
+        let vitrualDocument = parser.parseFromString(this.$page.props.pixel_script, 'text/html');
+        const pixel = vitrualDocument.head.getElementsByTagName('script')[0];
+        document.head.appendChild(pixel);
+
+        setTimeout(() => {
+            window.location.href = this.original_url;
+        }, 2000);
     },
 
     methods: {

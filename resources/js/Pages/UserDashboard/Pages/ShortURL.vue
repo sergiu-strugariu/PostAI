@@ -68,7 +68,7 @@ import { useForm } from '@inertiajs/vue3';
                         class="text-white absolute end-2.5 bottom-1 rounded-full bg-blue-700  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium text-sm px-12 py-4">
                         Create
                     </button>
-                    
+
                 </div>
                 <InputError class="mt-2" :message="form.errors.original_url" />
 

@@ -24,8 +24,6 @@ class ShortURLController extends Controller
 
     public function shortUrlStore(Request $request)
     {
-
-        dd(1);
         $request->validate([
             'original_url' => ['required', 'url'],
         ]);
