@@ -8,12 +8,14 @@ const style = ref('success');
 const message = ref('');
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
+console.log(style);
 
 watchEffect(async () => {
     style.value = page.props.jetstream.flash?.bannerStyle || 'success';
     message.value = page.props.jetstream.flash?.banner || '';
     show.value = true;
 });
+
 </script>
 
 <template>
@@ -40,8 +42,8 @@ watchEffect(async () => {
                         <p class="ms-3 font-medium text-sm text-white truncate">
                             {{ message }}
                             <span v-if="message.startsWith('Admin')">
-                                <a :href="route('home')" class="underline">{{ appName }}</a>
-                            </span> !
+                                <a :href="route('home')" class="underline">{{ appName }}</a> !
+                            </span> 
                         </p>
                     </div>
 

@@ -12,7 +12,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function create()
+    public function index()
     {
         if (Auth::check()) {
             return Inertia::render('UserDashboard/Dashboard');
@@ -25,10 +25,5 @@ class Controller extends BaseController
             'handel' => 'test',
             'team_id' => 1
         ]);
-    }
-
-    public function test() 
-    {
-        dd(1);
     }
 }

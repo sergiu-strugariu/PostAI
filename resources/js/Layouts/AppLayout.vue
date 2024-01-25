@@ -9,15 +9,14 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
-
 </script>
 
 <template>
     <div>
         <Banner />
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="min-h-screen bg-black">
+            <nav class="bg-black border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -31,8 +30,12 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('home')" :active="route().current('home')">
+                                <NavLink :href="route('home')" :active="route().current('home')"> 
                                     Home
+                                </NavLink>
+
+                                <NavLink :href="route('shorturl')" :active="route().current('shorturl')"> 
+                                    Short Link
                                 </NavLink>
                             </div>
                         </div>
