@@ -12,7 +12,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function create()
+    public function home()
     {
         if (Auth::check()) {
             return Inertia::render('UserDashboard/Dashboard');

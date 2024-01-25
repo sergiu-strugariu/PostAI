@@ -155,7 +155,7 @@ import { router } from '@inertiajs/vue3';
         <aside
             class="w-60 -translate-x-48 bg-black bg-opacity-50 p-4 fixed transition transform ease-in-out duration-1000 z-50 flex h-screen">
             <div
-                class="max-toolbar translate-x-24 scale-x-0 w-full -right-6 transition transform ease-in duration-300 flex items-center justify-between border-4 border-none bg-[#1E293B]  absolute top-2 rounded-full h-12">
+                class="max-toolbar translate-x-24 scale-x-0 w-full -right-6 transition transform ease-in duration-300 flex items-center justify-between border-4 border-none absolute top-2 rounded-full h-12">
 
                 <div class="flex pl-4 items-center space-x-2 ">
                     <div class="text-white hover:text-blue-500 ">
@@ -168,7 +168,7 @@ import { router } from '@inertiajs/vue3';
                 </div>
                 <div class="flex items-center space-x-3 group bg-gradient-to-r pl-10 pr-2 py-1 rounded-full text-white">
                     <div class="transform ease-in-out duration-300 mr-12 font-extrabold">
-                        {{ app_name }}
+                        <!-- {{ app_name }} -->
                     </div>
                 </div>
             </div>

@@ -40,8 +40,8 @@ watchEffect(async () => {
                         <p class="ms-3 font-medium text-sm text-white truncate">
                             {{ message }}
                             <span v-if="message.startsWith('Admin')">
-                                <a :href="route('home')" class="underline">{{ appName }}</a>
-                            </span> !
+                                <a :href="route('home')" class="underline">{{ appName }}</a> !
+                            </span> 
                         </p>
                     </div>
 
