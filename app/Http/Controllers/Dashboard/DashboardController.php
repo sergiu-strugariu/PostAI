@@ -18,8 +18,6 @@ class DashboardController extends Controller
 
     public function minishopPricing()
     {
-        // session()->flash('flash.banner', 'Admin: Go back to ');
-
         $minishop = MiniShop::first();
         $likes = $minishop->likes_price;
         $comments = $minishop->comments_price;
@@ -48,7 +46,7 @@ class DashboardController extends Controller
         $order->status = $request->status;
         $order->save();
         
-        session()->flash('flash.banner', 'The order updated successfully.');
+        session()->flash('flash.banner', 'The order has been updated successfully.');
         return redirect()->back();
     }
 
@@ -75,6 +73,6 @@ class DashboardController extends Controller
         $minishop->save();
 
         session()->flash('flash.banner', 'Prices has been updated succesfully!');
-        return;
+        return redirect()->back();
     }
 }
