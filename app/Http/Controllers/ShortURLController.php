@@ -27,7 +27,7 @@ class ShortURLController extends Controller
         $request->validate([
             'original_url' => ['required', 'url'],
         ]);
-
+        
         $url = $request->original_url;
         $randomString =  Str::random(10);
         $shortUrl = "127.0.0.1:8000/links/" . $randomString;
@@ -39,6 +39,7 @@ class ShortURLController extends Controller
                 'company_name' => 'links',
                 'original_url' => $url,
                 'short_url' => $shortUrl,
+                'pixel_script' => $request->pixel_script,
                 'code' => $randomString,
             ]);
 
@@ -60,6 +61,7 @@ class ShortURLController extends Controller
             'company_name' => $user->currentTeam->name,
             'original_url' => $url,
             'short_url' => $shortUrl,
+            'pixel_script' => $request->pixel_script,
             'code' => $randomString,
         ]);
 
@@ -81,12 +83,8 @@ class ShortURLController extends Controller
             return abort(404, 'Not Found');
         }
 
-        if (!$team) {
-            return Inertia::render("UserDashboard/Pages/ShortURL/RedirectPage", [
-                'company' => env('APP_NAME'),
-                'original_url' => $shortUrl->original_url
-            ]);
-        }
+        $shortUrl->visit_tracking += 1;
+        $shortUrl->save();
 
         return Inertia::render("UserDashboard/Pages/ShortURL/RedirectPage", [
             'company' => $team->name,

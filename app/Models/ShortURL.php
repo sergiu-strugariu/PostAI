@@ -15,8 +15,8 @@ class ShortURL extends Model
         'company_name',
         'original_url',
         'short_url', 
-        'code', 
-        'pixel_api', 
+        'pixel_script',
+        'code',
     ];
 
     public function company(): BelongsTo

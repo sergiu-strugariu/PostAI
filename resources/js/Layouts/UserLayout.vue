@@ -236,7 +236,7 @@ import Banner from '@/Components/Banner.vue';
                     <span class="ms-3">Orders</span>
                 </a>
 
-                <a :href="route('minishop.orders')"
+                <a :href="route('shorturl')"
                     class="flex items-center p-2 text-white rounded-lg bg-gray-700 hover:bg-gray-800 group">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path opacity="0.5"

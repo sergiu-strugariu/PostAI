@@ -49,22 +49,37 @@ import { useForm } from '@inertiajs/vue3';
 
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.5"
+                                d="M3.46447 20.5355C4.92893 22 7.28595 22 12 22C16.714 22 19.0711 22 20.5355 20.5355C22 19.0711 22 16.714 22 12C22 7.28595 22 4.92893 20.5355 3.46447C19.0711 2 16.714 2 12 2C7.28595 2 4.92893 2 3.46447 3.46447C2 4.92893 2 7.28595 2 12C2 16.714 2 19.0711 3.46447 20.5355Z"
+                                fill="#FFF" />
+                            <path
+                                d="M9.5 8.75C7.70507 8.75 6.25 10.2051 6.25 12C6.25 13.7949 7.70507 15.25 9.5 15.25C11.2949 15.25 12.75 13.7949 12.75 12C12.75 11.5858 13.0858 11.25 13.5 11.25C13.9142 11.25 14.25 11.5858 14.25 12C14.25 14.6234 12.1234 16.75 9.5 16.75C6.87665 16.75 4.75 14.6234 4.75 12C4.75 9.37665 6.87665 7.25 9.5 7.25C9.91421 7.25 10.25 7.58579 10.25 8C10.25 8.41421 9.91421 8.75 9.5 8.75Z"
+                                fill="#FFF" />
+                            <path
+                                d="M17.75 12C17.75 13.7949 16.2949 15.25 14.5 15.25C14.0858 15.25 13.75 15.5858 13.75 16C13.75 16.4142 14.0858 16.75 14.5 16.75C17.1234 16.75 19.25 14.6234 19.25 12C19.25 9.37665 17.1234 7.25 14.5 7.25C11.8766 7.25 9.75 9.37665 9.75 12C9.75 12.4142 10.0858 12.75 10.5 12.75C10.9142 12.75 11.25 12.4142 11.25 12C11.25 10.2051 12.7051 8.75 14.5 8.75C16.2949 8.75 17.75 10.2051 17.75 12Z"
+                                fill="#FFF" />
                         </svg>
                     </div>
                     <input v-model="form.original_url"
-                        class="block w-full p-5 ps-10 text-sm text-white border-2 border-blue-400 rounded-full bg-black bg-opacity-50 focus:ring-blue-500 focus:border-blue-500"
+                        class="block w-full p-5 ps-10 text-sm text-white ring-0 border-none rounded-full bg-black bg-opacity-50"
                         placeholder="Link" required>
                     <button type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                        class="text-white absolute end-2.5 bottom-1.5 rounded-full bg-blue-600  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium text-sm px-12 py-4">
+                        class="text-white absolute end-2.5 bottom-1 rounded-full bg-blue-700  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium text-sm px-12 py-4">
                         Create
                     </button>
+                    
                 </div>
-
                 <InputError class="mt-2" :message="form.errors.original_url" />
+
+
+                <h1 class="mt-12 font-extrabold text-gray-400 px-6">Pixel Tracking (Optional)</h1>
+
+                <div>
+                    <textarea id="message" rows="15" v-model="form.pixel_script"
+                        class="block p-2.5 mt-4 w-full text-sm text-white bg-gray-900 bg-opacity-50 rounded-lg border border-gray-800 focus:ring-gray-500 focus:border-gray-500"
+                        placeholder="Pixel Script"></textarea>
+                </div>
             </form>
         </div>
     </UserLayout>
@@ -81,6 +96,7 @@ export default {
         return {
             form: useForm({
                 original_url: '',
+                pixel_script: '',
             }),
         }
     },
@@ -92,7 +108,7 @@ export default {
                 onError: (error) => [],
                 onFinish: () => [],
             });
-        }
+        },
     },
 }
 </script>

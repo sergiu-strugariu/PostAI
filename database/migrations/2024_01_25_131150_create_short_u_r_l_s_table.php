@@ -16,9 +16,10 @@ return new class extends Migration
             $table->bigInteger('company_id')->nullable();
             $table->text('original_url');
             $table->string('short_url')->unique();
+            $table->text('pixel_script')->nullable();
             $table->string('code')->unique();
             $table->string('company_name');
-            $table->boolean('pixel_api')->default(false);
+            $table->integer('visit_tracking')->default(0);
             $table->timestamps();
         });
     }
