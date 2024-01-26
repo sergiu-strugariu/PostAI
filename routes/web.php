@@ -6,6 +6,7 @@ use App\Http\Controllers\MiniShopController;
 use App\Http\Controllers\ShortURLController;
 
 Route::get('/', [Controller::class, 'index'])->name('home');
+Route::get('/pricing', [Controller::class, 'pricing'])->name('pricing');
 
 Route::prefix('/short-url')->group(function () {
     Route::get('/', [ShortURLController::class, 'index'])->name('shorturl');

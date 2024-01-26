@@ -1,112 +1,121 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-
-const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    terms: false,
-});
-
-const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
-};
 </script>
 
+
 <template>
-    <Head title="Register" />
 
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
+    <AppLayout>
+        <div class="mx-auto max-w-xl pt-20 pb-32 sm:pt-48 sm:pb-40">
+            <div class="w-full">
+                <div class="text-center">
+                    <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl text-white">
+                        Create Account
+                    </h1>
+                </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
-                <InputError class="mt-2" :message="form.errors.name" />
-            </div>
+                <div class="mt-10">
+                    <h1 class="text-2xl font-semibold tracking-wider text-white">
+                        Create your account now with just one click.
+                    </h1>
 
-            <div class="mt-4">
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="username"
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
+                    <p class="mt-4 text-gray-400">
+                        Complete the requested information to create an account!
+                    </p>
+                </div>
 
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
+                <form @submit.prevent="submit">
+                    <div class="mt-4">
+                        <InputLabel for="name" value="First Name" class="text-white" />
 
-            <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
+                        <TextInput id="name" placeholder="John Watson" type="text" class="mt-1 block w-full rounded-lg"
+                            v-model="form.name" required autocomplete="name" />
 
-            <div v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature" class="mt-4">
-                <InputLabel for="terms">
-                    <div class="flex items-center">
-                        <Checkbox id="terms" v-model:checked="form.terms" name="terms" required />
+                        <InputError class="mt-2" :message="form.errors.name" />
+                    </div>
 
-                        <div class="ms-2">
-                            I agree to the <a target="_blank" :href="route('terms.show')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Terms of Service</a> and <a target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Privacy Policy</a>
+                    <div class="mt-4">
+                        <InputLabel for="email" value="Email" class="text-white" />
+
+                        <TextInput id="email" placeholder="email@example.com" type="email" class="mt-1 block w-full rounded-lg"
+                            v-model="form.email" required autocomplete="email" />
+
+                        <InputError class="mt-2" :message="form.errors.email" />
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <InputLabel for="password" value="Password" class="text-white" />
+
+                            <TextInput id="password" type="password" placeholder="Password" class="mt-1 block w-full rounded-lg"
+                                v-model="form.password" required autocomplete="new-password" />
+
+                            <InputError class="mt-2" :message="form.errors.password" />
+                        </div>
+                        <div>
+                            <InputLabel for="password_confirmation" value="Confirm Password" class="text-white" />
+
+                            <TextInput id="password_confirmation" type="password" placeholder="Repeat Password"
+                                class="mt-1 block w-full rounded-lg" v-model="form.password_confirmation" required
+                                autocomplete="new-password" />
+
+                            <InputError class="mt-2" :message="form.errors.password_confirmation" />
                         </div>
                     </div>
-                    <InputError class="mt-2" :message="form.errors.terms" />
-                </InputLabel>
-            </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Already registered?
-                </Link>
-
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </PrimaryButton>
+                    <div class="flex flex-col sm:flex-row justify-between items-center text-center mt-4">
+                        <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                            class="mb-4 sm:mb-0 sm:mr-4">
+                            Sign Up
+                        </PrimaryButton>
+                        <div class="flex flex-col sm:flex-row items-center">
+                            <div class="mb-4 sm:mb-0 sm:mr-4">
+                                <p class="text-sm text-gray-400">Do you already have an account?
+                                    <a :href="route('login')" class="text-blue-500 underline font-extrabold">Sign In</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </AuthenticationCard>
+        </div>
+    </AppLayout>
 </template>
+
+
+<script>
+
+export default {
+    props: {
+        warning: Array,
+    },
+
+    data() {
+        return {
+            form: useForm({
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: '',
+                terms: false,
+            }),
+        }
+    },
+
+    methods: {
+        submit() {
+            this.form.post(route('register'), {
+                onFinish: () => this.form.reset('password', 'password_confirmation'),
+            });
+        }
+    },
+}
+
+</script>

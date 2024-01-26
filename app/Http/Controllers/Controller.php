@@ -20,4 +20,12 @@ class Controller extends BaseController
 
         return Inertia::render('Home');
      }
+
+     public function pricing()
+     {
+        if (Auth::check()) {
+            return Inertia::render('UserDashboard/Pages/Pricing');
+        }
+        return Inertia::render('Pricing');
+     }
 }
