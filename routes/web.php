@@ -19,6 +19,7 @@ Route::prefix('/minishop')->group(function () {
     Route::get('/orders', [MiniShopController::class, 'orders'])->name('minishop.orders');
 });
 
+require __DIR__ . '/admin.php';
+
 Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'])->name('redirectToUrl');
 
-require __DIR__ . '/admin.php';
