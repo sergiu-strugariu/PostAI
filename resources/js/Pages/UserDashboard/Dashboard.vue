@@ -13,7 +13,7 @@ import UserLayout from '@/Layouts/UserLayout.vue';
                     <div
                         class="hidden md:block relative overflow-hidden rounded-full py-1.5 px-4 mt-1 text-sm leading-6 ring-1 ring-gray-100/40 hover:ring-gray-100/40">
                         <span class="text-white">
-                            Start your free trial right now.
+                            You don't have a company yet, <a :href="route('spark.portal')" class="text-cyan-400 underline">let make one</a> !
                         </span>
                     </div>
                 </div>
@@ -22,7 +22,7 @@ import UserLayout from '@/Layouts/UserLayout.vue';
                         <div
                             class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-100/40 hover:ring-gray-100/40">
                             <span class="text-white">
-                                Start your free trial right now.
+                                You don't have a company yet, <a :href="route('spark.portal')" class="text-cyan-400 underline">let make one</a> !
                             </span>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ import UserLayout from '@/Layouts/UserLayout.vue';
                             <div
                                 class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
                             </div>
-                            <a :href="route('pricing')"
+                            <a :href="route('spark.portal')"
                                 class="relative inline-flex items-center justify-center px-8 py-4 text-sm text-white transition-all duration-200 bg-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
                                 See our plans
                             </a>
@@ -47,3 +47,12 @@ import UserLayout from '@/Layouts/UserLayout.vue';
         </div>
     </UserLayout>
 </template>
+
+<script>
+export default {
+    props: {
+        userIsSubscribed: Boolean,
+        userIsOnTrial: Boolean,
+    }
+}
+</script>

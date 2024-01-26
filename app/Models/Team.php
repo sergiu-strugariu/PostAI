@@ -7,6 +7,7 @@ use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends JetstreamTeam
 {
@@ -42,7 +43,7 @@ class Team extends JetstreamTeam
         'deleted' => TeamDeleted::class,
     ];
 
-    public function shorturl()
+    public function shorturl(): HasMany
     {
         return $this->hasMany(ShortURL::class);
     }

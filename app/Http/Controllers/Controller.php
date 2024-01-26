@@ -15,17 +15,20 @@ class Controller extends BaseController
     public function index()
     {
         if (Auth::check()) {
-            return Inertia::render('UserDashboard/Dashboard');
+            return Inertia::render('UserDashboard/Dashboard', [
+                'userIsSubscribed' => request()->user()->subscribed(),
+                'userIsOnTrial' => request()->user()->onTrial()
+            ]);
         }
 
         return Inertia::render('Home');
-     }
+    }
 
-     public function pricing()
-     {
+    public function pricing()
+    {
         if (Auth::check()) {
             return Inertia::render('UserDashboard/Pages/Pricing');
         }
         return Inertia::render('Pricing');
-     }
+    }
 }
