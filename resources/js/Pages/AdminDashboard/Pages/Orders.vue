@@ -97,9 +97,9 @@ import { useForm } from '@inertiajs/vue3';
                                     <select id="status" @input="confirmStatus(order.id)"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">
                                         <option selected>{{ order.status }}</option>
+                                        <option value="On Hold">On Hold</option>
                                         <option value="Delivered">Delivered</option>
                                         <option value="Processing">Processing</option>
-                                        <option value="On Wait">On Wait</option>
                                     </select>
                                 </form>
                             </td>

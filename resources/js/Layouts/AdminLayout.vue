@@ -3,6 +3,26 @@ import Banner from '@/Components/Banner.vue';
 </script>
 
 <template>
+    <div class="relative items-center block h-screen p-6 bg-white border border-gray-100 rounded-lg shadow-md "
+        v-if="loading">
+        <div role="status" class="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
+            <div class="flex items-center justify-center w-full h-full">
+                <div class="flex justify-center items-center space-x-1 text-sm text-gray-700">
+
+                    <svg fill='none' class="w-6 h-6 animate-spin" viewBox="0 0 32 32" xmlns='http://www.w3.org/2000/svg'>
+                        <path clip-rule='evenodd'
+                            d='M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z'
+                            fill='currentColor' fill-rule='evenodd' />
+                    </svg>
+
+
+                    <div>Loading ...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <body class="body bg-gray-100 min-h-screen">
         <div class="fixed w-full z-30 bg-white shadow-xl items-center justify-center ">
             <div class="logo rounded-2xl transform ease-in-out duration-500   ">
@@ -108,6 +128,7 @@ import Banner from '@/Components/Banner.vue';
 export default {
     data() {
         return {
+            loading: true,
             sidebar: null,
             maxSidebar: null,
             miniSidebar: null,
@@ -123,16 +144,20 @@ export default {
     },
 
     mounted() {
-        this.sidebar = document.querySelector("aside");
-        this.maxSidebar = document.querySelector(".max");
-        this.miniSidebar = document.querySelector(".mini");
-        this.roundout = document.querySelector(".roundout");
-        this.maxToolbar = document.querySelector(".max-toolbar");
-        this.logo = document.querySelector('.logo');
-        this.content = document.querySelector('.content');
-        this.moon = document.querySelector(".moon");
-        this.sun = document.querySelector(".sun");
-        this.image = 'https://ui-avatars.com/api/?name=' + this.$page.props.auth.user.name
+        setTimeout(() => {
+            this.loading = false
+
+            this.sidebar = document.querySelector("aside");
+            this.maxSidebar = document.querySelector(".max");
+            this.miniSidebar = document.querySelector(".mini");
+            this.roundout = document.querySelector(".roundout");
+            this.maxToolbar = document.querySelector(".max-toolbar");
+            this.logo = document.querySelector('.logo');
+            this.content = document.querySelector('.content');
+            this.moon = document.querySelector(".moon");
+            this.sun = document.querySelector(".sun");
+            this.image = 'https://ui-avatars.com/api/?name=' + this.$page.props.auth.user.name
+        }, 1000);
     },
 
     methods: {

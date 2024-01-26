@@ -95,7 +95,7 @@ import UserLayout from '@/Layouts/UserLayout.vue';
                                     ${{ order.total }}
                                 </td>
                                 <td class="px-6 py-4 border-r border-gray-700"
-                                    :class="{ 'text-green-500': order.status === 'Delivered', 'text-blue-500': order.status === 'Proccesing', 'text-yellow-500': order.status === 'On Wait' }">
+                                    :class="{ 'text-green-500': order.status === 'Delivered', 'text-blue-500': order.status === 'Proccesing', 'text-yellow-500': order.status === 'On Hold' }">
                                     {{ order.status }}
                                 </td>
                             </tr>
