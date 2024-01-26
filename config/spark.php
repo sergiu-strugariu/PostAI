@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Team;
 
 return [
 
@@ -90,8 +90,8 @@ return [
 
     'billables' => [
 
-        'user' => [
-            'model' => User::class,
+        'team' => [
+            'model' => Team::class,
 
             'trial_days' => 0,
 
@@ -99,10 +99,23 @@ return [
 
             'plans' => [
                 [
-                    'name' => 'Company Subscription',
+                    'name' => 'Standard',
                     'short_description' => 'This is a short, human friendly description of the plan.',
                     'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 'pri_01hmtf6htyck7hk5axt6baa7fg'),
                     'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 'pri_01hmtf3pqa761r8xez8rdy93sk'),
+                    'features' => [
+                        'Feature 1',
+                        'Feature 2',
+                        'Feature 3',
+                    ],
+                    'archived' => false,
+                ],
+
+                [
+                    'name' => 'Large',
+                    'short_description' => 'This is a short, human friendly description of the plan.',
+                    'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 'pri_01hn32h54nwmkywfw3h2y17y6n'),
+                    'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 'pri_01hn32j33whq4zya7q8yn42vzy'),
                     'features' => [
                         'Feature 1',
                         'Feature 2',

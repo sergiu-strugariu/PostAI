@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spark\Billable;
 
 class Team extends JetstreamTeam
 {
-    use HasFactory;
+    use HasFactory, Billable;
 
     /**
      * The attributes that should be cast.
@@ -43,8 +43,13 @@ class Team extends JetstreamTeam
         'deleted' => TeamDeleted::class,
     ];
 
-    public function shorturl(): HasMany
+    public function paddleName(): string|null
     {
-        return $this->hasMany(ShortURL::class);
+        return $this->name;
+    }
+
+    public function paddleEmail(): string|null
+    {
+        return $this->owner->email;
     }
 }
