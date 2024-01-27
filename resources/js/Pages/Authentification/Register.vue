@@ -35,7 +35,7 @@ import TextInput from '@/Components/TextInput.vue';
                     <div class="mt-4">
                         <InputLabel for="name" value="First Name" class="text-white" />
 
-                        <TextInput id="name" placeholder="John Watson" type="text" class="mt-1 block w-full rounded-lg"
+                        <TextInput id="name" placeholder="John Watson" type="text" class="mt-1 block text-white w-full rounded-lg"
                             v-model="form.name" required autocomplete="name" />
 
                         <InputError class="mt-2" :message="form.errors.name" />
@@ -44,17 +44,17 @@ import TextInput from '@/Components/TextInput.vue';
                     <div class="mt-4">
                         <InputLabel for="email" value="Email" class="text-white" />
 
-                        <TextInput id="email" placeholder="email@example.com" type="email" class="mt-1 block w-full rounded-lg"
+                        <TextInput id="email" placeholder="email@example.com" type="email" class="mt-1 text-white block w-full rounded-lg"
                             v-model="form.email" required autocomplete="email" />
 
                         <InputError class="mt-2" :message="form.errors.email" />
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-4 mt-4">
                         <div>
                             <InputLabel for="password" value="Password" class="text-white" />
 
-                            <TextInput id="password" type="password" placeholder="Password" class="mt-1 block w-full rounded-lg"
+                            <TextInput id="password" type="password" placeholder="Password" class="mt-1 block text-white w-full rounded-lg"
                                 v-model="form.password" required autocomplete="new-password" />
 
                             <InputError class="mt-2" :message="form.errors.password" />
@@ -63,7 +63,7 @@ import TextInput from '@/Components/TextInput.vue';
                             <InputLabel for="password_confirmation" value="Confirm Password" class="text-white" />
 
                             <TextInput id="password_confirmation" type="password" placeholder="Repeat Password"
-                                class="mt-1 block w-full rounded-lg" v-model="form.password_confirmation" required
+                                class="mt-1 block text-white w-full rounded-lg" v-model="form.password_confirmation" required
                                 autocomplete="new-password" />
 
                             <InputError class="mt-2" :message="form.errors.password_confirmation" />
