@@ -39,7 +39,7 @@ import TextInput from '@/Components/TextInput.vue';
                             <div>
                                 <InputLabel for="email" value="Email Address" class="text-white" />
 
-                                <TextInput id="email" type="email" class="mt-1 block w-full rounded-lg"
+                                <TextInput id="email" type="email" class="mt-1 block w-full text-white rounded-lg"
                                     placeholder="email@example.com" v-model="form.email" required autofocus
                                     autocomplete="username" />
 
@@ -49,13 +49,13 @@ import TextInput from '@/Components/TextInput.vue';
                             <div class="mt-4">
                                 <InputLabel for="password" value="Password" class="text-white" />
 
-                                <TextInput id="password" type="password" class="mt-1 block w-full rounded-lg"
+                                <TextInput id="password" type="password" class="mt-1 block w-full text-white rounded-lg"
                                     placeholder="Parola" v-model="form.password" required autocomplete="current-password" />
 
                                 <InputError class="mt-2" :message="form.errors.password" />
                             </div>
 
-                            <div class="flex flex-col sm:flex-row justify-between items-center text-center mt-4">
+                            <div class="flex flex-col sm:flex-row justify-between items-center  text-center mt-4">
                                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                                     class="mb-4 sm:mb-0 sm:mr-4">
                                     Sign In
