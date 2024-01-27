@@ -14,6 +14,7 @@ const props = defineProps({
 
 const form = useForm({
     name: props.team.name,
+    email: '',
 });
 
 const updateTeamName = () => {
@@ -64,6 +65,20 @@ const updateTeamName = () => {
                 />
 
                 <InputError :message="form.errors.name" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <InputLabel for="name" value="Company Email" />
+
+                <TextInput
+                    id="name"
+                    v-model="form.email"
+                    type="email"
+                    class="mt-1 block w-full"
+                    :disabled="! permissions.canUpdateTeam"
+                />
+
+                <InputError :message="form.errors.email" class="mt-2" />
             </div>
         </template>
 
