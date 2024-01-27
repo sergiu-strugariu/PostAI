@@ -48,8 +48,8 @@ class Team extends JetstreamTeam
         return $this->name;
     }
 
-    public function paddleEmail(): string|null
+    public function paddleEmail()
     {
-        return $this->owner->email;
+        return 'companymail_'. $this->owner->ownedTeams->count() . '@email.com';
     }
 }
