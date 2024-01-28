@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Team;
+use App\Models\User;
 
 return [
 
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'path' => '/company/subscription',
+    'path' => '/subscription',
 
     /*
     |--------------------------------------------------------------------------
@@ -90,8 +91,8 @@ return [
 
     'billables' => [
 
-        'team' => [
-            'model' => Team::class,
+        'user' => [
+            'model' => User::class,
 
             'trial_days' => 0,
 

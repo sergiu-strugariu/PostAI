@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Spark\Plan;
@@ -15,18 +16,20 @@ class SparkServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Spark::billable(Team::class)->resolve(function (Request $request) {
-            return $request->user()->currentTeam;
+        Spark::billable(User::class)->resolve(function (Request $request) {
+            return $request->user();
         });
 
-        // Verify that the current user owns the team...
-        Spark::billable(Team::class)->authorize(function (Team $billable, Request $request) {
+        Spark::billable(User::class)->authorize(function (User $billable, Request $request) {
             return $request->user() &&
-                   $request->user()->id == $billable->user_id;
+                $request->user()->id == $billable->id;
         });
 
-        Spark::billable(Team::class)->checkPlanEligibility(function (Team $billable, Plan $plan) {
-            // ...
+        Spark::billable(User::class)->checkPlanEligibility(function ($billable, Plan $plan) {
+            dd(1);
+            if (count($billable->projects) > 1 && $plan->name == 'Standard ') {
+                dd("Upgrade plan");
+            }
         });
     }
 }
