@@ -16,8 +16,8 @@ class Controller extends BaseController
     {
         if (Auth::check()) {
             return Inertia::render('UserDashboard/Dashboard', [
-                // 'userIsSubscribed' => request()->user()->subscribed(),
-                // 'userIsOnTrial' => request()->user()->onTrial()
+                'userIsSubscribed' => request()->user()->subscribed(),
+                'userIsOnTrial' => request()->user()->onTrial()
             ]);
         }
 

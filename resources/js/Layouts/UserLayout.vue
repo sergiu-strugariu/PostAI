@@ -21,11 +21,9 @@ import Banner from '@/Components/Banner.vue';
 
             <div class="grow h-full flex items-center justify-center"></div>
             <div class="flex-none h-full flex items-center justify-center">
-
                 <div class="flex space-x-3 items-center px-3">
-
                     <div>
-                        <Dropdown v-if="$page.props.auth.user.all_teams.length > 0" align="right" width="60">
+                        <Dropdown v-if="userIsSubscribed || userIsOnTrial" align="right" width="60">
                             <template #trigger>
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
@@ -44,8 +42,6 @@ import Banner from '@/Components/Banner.vue';
 
                             <template #content>
                                 <div class="w-60">
-                                    <!-- Team Management -->
-
                                     <!-- Team Settings -->
                                     <DropdownLink v-if="$page.props.auth.user.current_team"
                                         :href="route('teams.show', $page.props.auth.user.current_team)">
@@ -123,16 +119,6 @@ import Banner from '@/Components/Banner.vue';
                                     </DropdownLink>
                                 </div>
 
-                                <div>
-                                    <div
-                                        class="block px-4 py-2 text-xs text-white">
-                                        Manage Subscriptions
-                                    </div>
-
-                                    <DropdownLink :href="route('spark.portal')">
-                                        Subscriptions
-                                    </DropdownLink>
-                                </div>
 
                                 <div class="block px-4 py-2 text-xs text-white">
                                     Manage Account
@@ -142,9 +128,8 @@ import Banner from '@/Components/Banner.vue';
                                     Profile
                                 </DropdownLink>
 
-                                <DropdownLink v-if="$page.props.auth.user.all_teams.length < 1"
-                                    :href="route('teams.create')">
-                                    Create new Company
+                                <DropdownLink :href="route('spark.portal')">
+                                    Subscriptions
                                 </DropdownLink>
 
                                 <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
@@ -380,6 +365,10 @@ import Banner from '@/Components/Banner.vue';
 
 <script>
 export default {
+    props: {
+        userIsSubscribed: Boolean,
+        userIsOnTrial: Boolean,
+    },
     data() {
         return {
             sidebar: null,
@@ -398,6 +387,9 @@ export default {
     },
 
     mounted() {
+
+        console.log(this.$page.props.auth.user);
+        
         this.sidebar = document.querySelector("aside");
         this.maxSidebar = document.querySelector(".max");
         this.miniSidebar = document.querySelector(".mini");
