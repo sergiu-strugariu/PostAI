@@ -26,10 +26,7 @@ class SparkServiceProvider extends ServiceProvider
         });
 
         Spark::billable(User::class)->checkPlanEligibility(function ($billable, Plan $plan) {
-            dd(1);
-            if (count($billable->projects) > 1 && $plan->name == 'Standard ') {
-                dd("Upgrade plan");
-            }
+            // 
         });
     }
 }
