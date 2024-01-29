@@ -89,7 +89,6 @@ return [
     */
 
     'billables' => [
-
         'user' => [
             'model' => User::class,
 
