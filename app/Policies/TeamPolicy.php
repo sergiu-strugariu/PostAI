@@ -31,7 +31,9 @@ class TeamPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+
+        // Check Subscription Status
+        return true; 
     }
 
     /**

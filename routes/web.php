@@ -22,4 +22,12 @@ Route::prefix('/minishop')->group(function () {
 
 Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'])->name('redirectToUrl');
 
+/* Route::prefix('/twitter')->group(function () {
+    Route::get('/', [TwitterController::class, 'index'])->name('twitter');
+    Route::get('/login', [TwitterController::class, 'login'])->name('twitter.login');
+    Route::get('/callback', [TwitterController::class, 'callback'])->name('twitter.callback');
+    Route::get('/logout', [TwitterController::class, 'logout'])->name('twitter.logout');
+    Route::get('/error', [TwitterController::class, 'error'])->name('twitter.error');
+}); */
+
 require __DIR__ . '/admin.php';

@@ -24,7 +24,7 @@ class SparkServiceProvider extends ServiceProvider
             return $request->user() && $request->user()->id == $billable->id;
         });
 
-        Spark::billable(User::class)->checkPlanEligibility(function (User $billable, Plan $plan) {
+/*         Spark::billable(User::class)->checkPlanEligibility(function (User $billable, Plan $plan) {
             if (count($billable->ownedTeams ) > 3 && $plan->name == 'Standard') {
                 throw ValidationException::withMessages([
                     'plan' => 'You have too many teams for the selected plan.'
@@ -35,6 +35,6 @@ class SparkServiceProvider extends ServiceProvider
                     'plan' => 'You have too many projects for the selected plan.'
                 ]);
             }
-        });
+        }); */
     }
 }
