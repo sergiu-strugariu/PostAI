@@ -91,15 +91,12 @@ return [
     'billables' => [
         'user' => [
             'model' => User::class,
-
             'trial_days' => 0,
-
             'default_interval' => 'monthly',
-
             'plans' => [
                 [
                     'name' => 'Standard',
-                    'short_description' => 'This is a short, human friendly description of the plan.',
+                    'short_description' => 'This is a short, human friendly description of the plan. Have 3 teams',
                     'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 'pri_01hmtf6htyck7hk5axt6baa7fg'),
                     'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 'pri_01hmtf3pqa761r8xez8rdy93sk'),
                     'features' => [
@@ -109,8 +106,7 @@ return [
                     ],
                     'archived' => false,
                 ],
-
-                [
+/*                 [
                     'name' => 'Large',
                     'short_description' => 'This is a short, human friendly description of the plan.',
                     'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 'pri_01hn32h54nwmkywfw3h2y17y6n'),
@@ -121,7 +117,7 @@ return [
                         'Feature 3',
                     ],
                     'archived' => false,
-                ],
+                ], */
             ],
         ],
     ],

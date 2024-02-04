@@ -20,17 +20,17 @@ class SparkServiceProvider extends ServiceProvider
             return $request->user();
         });
 
-        Spark::billable(User::class)->authorize(function (User $billable, Request $request) {
-            return $request->user() && $request->user()->id == $billable->id;
+        Spark::billable(User::class)->authorize(function (User $user, Request $request) {
+            return $request->user() && $request->user()->id == $user->id;
         });
 
-/*         Spark::billable(User::class)->checkPlanEligibility(function (User $billable, Plan $plan) {
-            if (count($billable->ownedTeams ) > 3 && $plan->name == 'Standard') {
+/*         Spark::billable(User::class)->checkPlanEligibility(function (User $user, Plan $plan) { // this is for the team plan rolse dosent have anything with authetification to do
+            if (count($user->ownedTeams->count()) > 3 && $plan->name == 'Standard') {
                 throw ValidationException::withMessages([
                     'plan' => 'You have too many teams for the selected plan.'
                 ]);
             }
-            if (count($billable->ownedTeams ) > 10 && $plan->name == 'Large') {
+            if (count($user->ownedTeams->count()) > 10 && $plan->name == 'Large') {
                 throw ValidationException::withMessages([
                     'plan' => 'You have too many projects for the selected plan.'
                 ]);

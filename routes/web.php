@@ -1,6 +1,9 @@
 <?php
 
+use Spark\Spark;
+use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MiniShopController;
 use App\Http\Controllers\ShortURLController;
@@ -29,5 +32,10 @@ Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'
     Route::get('/logout', [TwitterController::class, 'logout'])->name('twitter.logout');
     Route::get('/error', [TwitterController::class, 'error'])->name('twitter.error');
 }); */
+
+/* Route::get('/test', function () {
+    $user = Auth::user();
+    dd($user->subscribed());
+})->name('test'); */
 
 require __DIR__ . '/admin.php';
