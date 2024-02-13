@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
+use Spark\Billable;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
-use Spark\Billable;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -28,7 +30,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'role', 'password',
+        'name',
+        'email',
+        'role',
+        'password',
     ];
 
     /**
@@ -64,5 +69,25 @@ class User extends Authenticatable
     public function minishoporder(): HasMany
     {
         return $this->hasMany(MiniShopOrders::class);
+    }
+
+    /**
+     * Checks if the team subscription threshold has been reached for the authenticated user.
+     *
+     * @return bool Returns true if the threshold has been reached, false otherwise.
+     */
+    static public function teamSubsciptionTresholdReached(): bool
+    {
+        $user = Auth::user();
+        if (!$user) return true; // case no subscription or user
+        if (!$user->subscribed()) return true; // case no subscription
+        $subscription = $user->sparkPlan()->name;
+        $ownedTeams = count($user->ownedTeams);
+        $treshhold = 0;
+
+        if ($subscription == "Standard") $treshhold = 3;
+        if ($subscription == "Large") $treshhold = 10;
+
+        return $ownedTeams >= $treshhold;
     }
 }

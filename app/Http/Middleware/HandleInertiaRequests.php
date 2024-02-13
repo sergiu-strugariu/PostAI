@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
+use Illuminate\Http\Request;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -38,15 +37,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        if (Auth::check()) {
+/*         if (Auth::check()) {
             return array_merge(parent::share($request), [
                 'isSubscribed' => $request->user()->subscribed(),
                 'isOnTrial' => $request->user()->onTrial(),
             ]);
-        }
+        } */
 
         return array_merge(parent::share($request), [
-            
+            "userTeamTreasholdReached" => User::teamSubsciptionTresholdReached(),
         ]);
     }
 }

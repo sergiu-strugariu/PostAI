@@ -23,8 +23,8 @@ import Banner from '@/Components/Banner.vue';
             <div class="flex-none h-full flex items-center justify-center">
                 <div class="flex space-x-3 items-center px-3">
                     <div>
-                        <Dropdown v-if="this.$page.props.isSubscribed || this.$page.props.isOnTrial" align="right" width="60">
-                            <template #trigger>
+                        <Dropdown v-if="userTeamTreasholdReached != true || $page.props.auth.user.current_team" align="right" width="60">
+                            <template #trigger> 
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-gray-400 focus:outline-none focus:bg-gray-900 active:bg-gray-900 transition ease-in-out duration-150">
@@ -39,21 +39,18 @@ import Banner from '@/Components/Banner.vue';
                                     </button>
                                 </span>
                             </template>
-
                             <template #content>
                                 <div class="w-60">
                                     <!-- Team Settings -->
+                                    <DropdownLink
+                                        :href="route('teams.create')">
+                                        {{  userTeamTreasholdReached != true ? 'Create Company' : 'Upgrade Plan' }}
+                                    </DropdownLink>
+
                                     <DropdownLink v-if="$page.props.auth.user.current_team"
                                         :href="route('teams.show', $page.props.auth.user.current_team)">
                                         Company Settings
                                     </DropdownLink>
-
-                                    <DropdownLink
-                                        v-if="$page.props.jetstream.canCreateTeams"
-                                        :href="route('teams.create')">
-                                        Create New Company
-                                    </DropdownLink>
-
                                     <!-- Team Switcher -->
                                     <template v-if="$page.props.auth.user.all_teams.length > 0">
                                         <div class="border-t border-gray-600" />
@@ -83,6 +80,7 @@ import Banner from '@/Components/Banner.vue';
                                 </div>
                             </template>
                         </Dropdown>
+
                     </div>
 
                     <div>
@@ -371,6 +369,7 @@ export default {
     },
     data() {
         return {
+            userTeamTreasholdReached : Boolean || true,
             sidebar: null,
             maxSidebar: null,
             miniSidebar: null,
@@ -380,13 +379,15 @@ export default {
             content: null,
             moon: null,
             sun: null,
-
             app_name: import.meta.env.VITE_APP_NAME,
             image: null
         }
     },
 
     mounted() {
+        this.userTeamTreasholdReached = this.$page.props.userTeamTreasholdReached;
+
+        
         this.sidebar = document.querySelector("aside");
         this.maxSidebar = document.querySelector(".max");
         this.miniSidebar = document.querySelector(".mini");
@@ -406,6 +407,9 @@ export default {
             }, {
                 preserveState: false,
             });
+        },
+        checkSubscriptionStatus () {
+            return  true;
         },
 
         logout() {
