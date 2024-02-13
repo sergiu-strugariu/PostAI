@@ -23,7 +23,7 @@ import Banner from '@/Components/Banner.vue';
             <div class="flex-none h-full flex items-center justify-center">
                 <div class="flex space-x-3 items-center px-3">
                     <div>
-                        <Dropdown v-if="userIsSubscribed || userIsOnTrial" align="right" width="60">
+                        <Dropdown v-if="this.$page.props.isSubscribed || this.$page.props.isOnTrial" align="right" width="60">
                             <template #trigger>
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
@@ -49,7 +49,7 @@ import Banner from '@/Components/Banner.vue';
                                     </DropdownLink>
 
                                     <DropdownLink
-                                        v-if="$page.props.jetstream.canCreateTeams && $page.props.auth.user.current_team"
+                                        v-if="$page.props.jetstream.canCreateTeams"
                                         :href="route('teams.create')">
                                         Create New Company
                                     </DropdownLink>
@@ -387,9 +387,6 @@ export default {
     },
 
     mounted() {
-
-        console.log(this.$page.props.auth.user);
-        
         this.sidebar = document.querySelector("aside");
         this.maxSidebar = document.querySelector(".max");
         this.miniSidebar = document.querySelector(".mini");

@@ -22,4 +22,6 @@ Route::prefix('/minishop')->group(function () {
 
 Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'])->name('redirectToUrl');
 
+require __DIR__ . '/jetstream.php';
+
 require __DIR__ . '/admin.php';
