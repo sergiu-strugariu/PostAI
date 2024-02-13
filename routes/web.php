@@ -35,7 +35,7 @@ Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'
 
 Route::get('/subUserTest', function () {
     $user = Auth::user();
-    
+
     $subscription = $user->subscriptions()->create([
         'type' => 'default',
         'paddle_id' => fake()->unique()->numberBetween(1, 1000),
@@ -45,13 +45,16 @@ Route::get('/subUserTest', function () {
         'ends_at' => null,
     ]);
 
-    /*     $subscription->items()->create([
-            'product_id' => fake()->unique()->numberBetween(1, 1000),
-            'price_id' => "pri_01hmtf6htyck7hk5axt6baa7fg",
-            'status' => 'active',
-            'quantity' => 1,
-        ]); */
+    $subscription->items()->create([
+        'product_id' => fake()->unique()->numberBetween(1, 1000),
+        'price_id' => "pri_01hmtf6htyck7hk5axt6baa7fg",
+        'status' => 'active',
+        'quantity' => 1,
+    ]);
+
+    dd($subscription);
 
 })->name('test');
 
+require __DIR__ . '/jetstream.php';
 require __DIR__ . '/admin.php';

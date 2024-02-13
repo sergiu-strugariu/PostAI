@@ -85,11 +85,8 @@ class User extends Authenticatable
         $ownedTeams = count($user->ownedTeams);
         $treshhold = 0;
 
-
-        if ($subscription == "Standard")
-            $treshhold = 3;
-        if ($subscription == "Large")
-            $treshhold = 10;
+        if ($subscription == "Standard") $treshhold = 3;
+        if ($subscription == "Large") $treshhold = 10;
 
         return $ownedTeams >= $treshhold;
     }

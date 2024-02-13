@@ -386,7 +386,8 @@ export default {
 
     mounted() {
         this.userTeamTreasholdReached = this.$page.props.userTeamTreasholdReached;
-        console.log(this.userTeamTreasholdReached);
+
+        
         this.sidebar = document.querySelector("aside");
         this.maxSidebar = document.querySelector(".max");
         this.miniSidebar = document.querySelector(".mini");
