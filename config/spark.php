@@ -106,7 +106,8 @@ return [
                     ],
                     'archived' => false,
                 ],
-/*                 [
+                
+                [
                     'name' => 'Large',
                     'short_description' => 'This is a short, human friendly description of the plan.',
                     'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 'pri_01hn32h54nwmkywfw3h2y17y6n'),
@@ -117,7 +118,7 @@ return [
                         'Feature 3',
                     ],
                     'archived' => false,
-                ], */
+                ],
             ],
         ],
     ],
