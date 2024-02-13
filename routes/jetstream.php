@@ -55,7 +55,7 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
 
             // Teams...
             if (Jetstream::hasTeamFeatures()) {
-                Route::get('/teams/create', [TeamController::class, 'create'])->middleware(["subscribed","teamTreasHold"])->name('teams.create');
+                Route::get('/teams/create', [TeamController::class, 'create'])->middleware(["teamTreasHold"])->name('teams.create');
                 Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
                 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
                 Route::put('/teams/{team}', [TeamController::class, 'update'])->name('teams.update');

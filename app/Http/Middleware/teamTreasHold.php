@@ -18,7 +18,7 @@ class teamTreasHold
     public function handle(Request $request, Closure $next): Response
     {
         if (User::teamSubsciptionTresholdReached()) {
-            return to_route("pricing");
+            return to_route("spark.portal");
         }
         
         return $next($request);
