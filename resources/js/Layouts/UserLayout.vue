@@ -353,9 +353,9 @@ import Banner from '@/Components/Banner.vue';
         </section>
 
         <div class="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
-            <nav class="px-5 py-3 text-white rounded-lg w-full">
+            <div class="px-5 py-3 text-white rounded-lg w-full">
                 <slot />
-            </nav>
+            </div>
         </div>
     </body>
 </template>

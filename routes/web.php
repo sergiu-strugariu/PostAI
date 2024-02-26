@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\MiniShopController;
 use App\Http\Controllers\ShortURLController;
 
@@ -24,14 +25,6 @@ Route::prefix('/minishop')->group(function () {
 });
 
 Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'])->name('redirectToUrl');
-
-/* Route::prefix('/twitter')->group(function () {
-    Route::get('/', [TwitterController::class, 'index'])->name('twitter');
-    Route::get('/login', [TwitterController::class, 'login'])->name('twitter.login');
-    Route::get('/callback', [TwitterController::class, 'callback'])->name('twitter.callback');
-    Route::get('/logout', [TwitterController::class, 'logout'])->name('twitter.logout');
-    Route::get('/error', [TwitterController::class, 'error'])->name('twitter.error');
-}); */
 
 Route::get('/subUserTest', function () {
     $user = Auth::user();
@@ -56,5 +49,16 @@ Route::get('/subUserTest', function () {
 
 })->name('test');
 
+/* Route::prefix('/twitter')->group(function () {
+    Route::get('/', [TwitterController::class, 'index'])->name('twitter');
+    Route::get('/login', [TwitterController::class, 'login'])->name('twitter.login');
+    Route::get('/callback', [TwitterController::class, 'callback'])->name('twitter.callback');
+    Route::get('/logout', [TwitterController::class, 'logout'])->name('twitter.logout');
+    Route::get('/error', [TwitterController::class, 'error'])->name('twitter.error');
+}); */
+
+require __DIR__ . '/posts.php';
 require __DIR__ . '/jetstream.php';
 require __DIR__ . '/admin.php';
+
+
