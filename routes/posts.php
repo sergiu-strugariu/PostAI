@@ -1,6 +1,15 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TwitterAPIController;
 
-Route::get('/posts', [PostController::class,"index"])->middleware(["auth"])->name("posts");
-Route::get('/posts/create', [PostController::class,"create"])->middleware(["auth"])->name("posts.create");
+
+Route::prefix("twitter")->group(function () {
+    Route::get('/oauth', [TwitterAPIController::class, 'getOauth'])->middleware(['auth'])->name('twitter-oauth');
+    Route::get('/callback', [TwitterAPIController::class, 'callback'])->name('twitter-callback');
+});
+
+Route::prefix("posts")->group(function () {
+    Route::get('/', [PostController::class, 'index'])->name('posts');
+    Route::get('/create', [PostController::class, 'create'])->name('posts.create');
+});

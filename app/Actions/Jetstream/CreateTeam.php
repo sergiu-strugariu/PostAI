@@ -32,6 +32,8 @@ class CreateTeam implements CreatesTeams
             'personal_team' => false,
         ]));
 
+        $team->socialData()->create();
+
         return $team;
     }
 }

@@ -49,11 +49,6 @@ Route::get('/subUserTest', function () {
 
 })->name('test');
 
-Route::get('/test', [TwitterAPIController::class, 'getOauth'])->name('twitter-oauth');
-Route::get('/twitter/callback', [TwitterAPIController::class, 'callback'])->name('twitter-callback');
-
-
-/* Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'])->name('redirectToUrl'); */
 
 require __DIR__ . '/posts.php';
 require __DIR__ . '/jetstream.php';

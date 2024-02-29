@@ -46,4 +46,9 @@ class Team extends JetstreamTeam
     {
         return $this->hasMany(Post::class);
     }
+
+    public function socialData()
+    {
+        return $this->hasOne(TeamSocialData::class);
+    }
 }
