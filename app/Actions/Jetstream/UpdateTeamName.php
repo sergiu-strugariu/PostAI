@@ -29,9 +29,10 @@ class UpdateTeamName implements UpdatesTeamNames
         $customer->forceFill([
             'email' => $input['email'],
         ])->save();
-        
+
         $team->forceFill([
             'name' => $input['name'],
+            'informations' => $input['informations'],
         ])->save();
     }
 }
