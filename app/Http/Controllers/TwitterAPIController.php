@@ -19,14 +19,14 @@ class TwitterAPIController extends Controller
 
         session(['oauth_token' => $request_token['oauth_token']]);
         session(['oauth_token_secret' => $request_token['oauth_token_secret']]);
-        
+
         return redirect($connection->url('oauth/authorize', ['oauth_token' => $request_token['oauth_token']]));
     }
     public  function callback(Request $request){
         $request_token['oauth_token'] = session('oauth_token');
         $request_token['oauth_token_secret'] = session('oauth_token_secret');
 
-        $connection = new TwitterOAuth("kwA8XtEyiPGOdkvN3gJtNgToA","YXEnfShva7emo93e98VlqUnkvUqaoCfJ0ennqYLEkAYcOSCTPU", $request_token['oauth_token'], $request_token['oauth_token_secret']); // app as user   
+        $connection = new TwitterOAuth("kwA8XtEyiPGOdkvN3gJtNgToA","YXEnfShva7emo93e98VlqUnkvUqaoCfJ0ennqYLEkAYcOSCTPU", $request_token['oauth_token'], $request_token['oauth_token_secret']); // app as user
         $access_token = $connection->oauth("oauth/access_token", ["oauth_verifier" => $request->all()['oauth_verifier']]);
 
         Auth::user()->currentTeam->socialData()->update([

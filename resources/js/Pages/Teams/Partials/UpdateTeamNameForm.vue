@@ -15,6 +15,7 @@ const props = defineProps({
 
 const form = useForm({
     name: props.team.name,
+    informations: props.team.informations,
     email: '',
 });
 
@@ -79,13 +80,18 @@ const updateTeamName = () => {
                     :disabled="! permissions.canUpdateTeam"
                 />
                 <InputError :message="form.errors.email" class="mt-2" />
-                
-                <InputLabel for="name" value="Company Informaton" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <InputLabel for="name" value="Company Informations" />
                 <textarea
-                    id="information"
+                    id="informations"
+                    v-model="form.informations"
                     type="text"
                     class="mt-1 block w-full h-fit max-h-20 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm bg-black bg-opacity-50"
                     :disabled="! permissions.canUpdateTeam" />
+
+                <InputError :message="form.errors.informations" class="mt-2" />
             </div>
         </template>
 
