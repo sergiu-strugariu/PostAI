@@ -7,11 +7,10 @@ use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
-use Spark\Billable;
 
 class Team extends JetstreamTeam
 {
-    use HasFactory, Billable;
+    use HasFactory;
 
     /**
      * The attributes that should be cast.
@@ -43,13 +42,13 @@ class Team extends JetstreamTeam
         'deleted' => TeamDeleted::class,
     ];
 
-    public function paddleName(): string|null
+    public function posts()
     {
-        return $this->name;
+        return $this->hasMany(Post::class);
     }
 
-    public function paddleEmail()
+    public function socialData()
     {
-        return 'companymail_'. $this->owner->ownedTeams->count() . '@email.com';
+        return $this->hasOne(TeamSocialData::class);
     }
 }

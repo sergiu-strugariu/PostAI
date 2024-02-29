@@ -12,16 +12,24 @@
     ],
     "require": {
         "php": "^8.1",
+        "abraham/twitteroauth": "^7.0",
+        "atymic/twitter": "^3.2",
+        "coderjerk/bird-elephant": "^0.7.1",
         "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/psr7": "^2.6",
         "inertiajs/inertia-laravel": "^0.6.8",
         "laravel/framework": "^10.10",
         "laravel/jetstream": "^4.2",
         "laravel/sanctum": "^3.3",
+        "laravel/socialite": "^5.11",
+        "laravel/spark-paddle": "^5.0",
         "laravel/tinker": "^2.8",
-        "tightenco/ziggy": "^1.0",
-        "laravel/spark-paddle": "^5.0"
+        "php-http/curl-client": "^2.3",
+        "php-http/message": "^1.16",
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.10",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",

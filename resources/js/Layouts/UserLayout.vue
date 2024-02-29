@@ -21,12 +21,10 @@ import Banner from '@/Components/Banner.vue';
 
             <div class="grow h-full flex items-center justify-center"></div>
             <div class="flex-none h-full flex items-center justify-center">
-
                 <div class="flex space-x-3 items-center px-3">
-
                     <div>
-                        <Dropdown v-if="$page.props.auth.user.all_teams.length > 0" align="right" width="60">
-                            <template #trigger>
+                        <Dropdown v-if="userTeamTreasholdReached != true || $page.props.auth.user.current_team" align="right" width="60">
+                            <template #trigger> 
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-gray-400 focus:outline-none focus:bg-gray-900 active:bg-gray-900 transition ease-in-out duration-150">
@@ -41,31 +39,18 @@ import Banner from '@/Components/Banner.vue';
                                     </button>
                                 </span>
                             </template>
-
                             <template #content>
                                 <div class="w-60">
-                                    <!-- Team Management -->
-                                    <div v-if="$page.props.auth.user.current_team"
-                                        class="block px-4 py-2 text-xs text-white">
-                                        Manage Company
-                                    </div>
-
-                                    <DropdownLink v-if="$page.props.auth.user.current_team" :href="route('spark.portal')">
-                                        Subscriptions
+                                    <!-- Team Settings -->
+                                    <DropdownLink
+                                        :href="route('teams.create')">
+                                        {{  userTeamTreasholdReached != true ? 'Create Company' : 'Upgrade Plan' }}
                                     </DropdownLink>
 
-                                    <!-- Team Settings -->
                                     <DropdownLink v-if="$page.props.auth.user.current_team"
                                         :href="route('teams.show', $page.props.auth.user.current_team)">
                                         Company Settings
                                     </DropdownLink>
-
-                                    <DropdownLink
-                                        v-if="$page.props.jetstream.canCreateTeams && $page.props.auth.user.current_team"
-                                        :href="route('teams.create')">
-                                        Create New Company
-                                    </DropdownLink>
-
                                     <!-- Team Switcher -->
                                     <template v-if="$page.props.auth.user.all_teams.length > 0">
                                         <div class="border-t border-gray-600" />
@@ -95,6 +80,7 @@ import Banner from '@/Components/Banner.vue';
                                 </div>
                             </template>
                         </Dropdown>
+
                     </div>
 
                     <div>
@@ -131,6 +117,7 @@ import Banner from '@/Components/Banner.vue';
                                     </DropdownLink>
                                 </div>
 
+
                                 <div class="block px-4 py-2 text-xs text-white">
                                     Manage Account
                                 </div>
@@ -139,9 +126,8 @@ import Banner from '@/Components/Banner.vue';
                                     Profile
                                 </DropdownLink>
 
-                                <DropdownLink v-if="$page.props.auth.user.all_teams.length < 1"
-                                    :href="route('teams.create')">
-                                    Create new Company
+                                <DropdownLink :href="route('spark.portal')">
+                                    Subscriptions
                                 </DropdownLink>
 
                                 <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
@@ -209,7 +195,7 @@ import Banner from '@/Components/Banner.vue';
                 </a>
 
                 <a :href="route('minishop')"
-                class="flex items-center p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-950 group transition-all">
+                    class="flex items-center p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-950 group transition-all">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M14.5 21.9913V18.5C14.5 17.5654 14.5 17.0981 14.299 16.75C14.1674 16.522 13.978 16.3326 13.75 16.201C13.4019 16 12.9346 16 12 16C11.0654 16 10.5981 16 10.25 16.201C10.022 16.3326 9.83261 16.522 9.70096 16.75C9.5 17.0981 9.5 17.5654 9.5 18.5V21.9913H14.5Z"
@@ -231,7 +217,7 @@ import Banner from '@/Components/Banner.vue';
                 </a>
 
                 <a :href="route('minishop.orders')"
-                class="flex items-center p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-950 group transition-all">
+                    class="flex items-center p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-950 group transition-all">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M5.58579 4.58579C5 5.17157 5 6.11438 5 8V17C5 18.8856 5 19.8284 5.58579 20.4142C6.17157 21 7.11438 21 9 21H15C16.8856 21 17.8284 21 18.4142 20.4142C19 19.8284 19 18.8856 19 17V8C19 6.11438 19 5.17157 18.4142 4.58579C17.8284 4 16.8856 4 15 4H9C7.11438 4 6.17157 4 5.58579 4.58579ZM9 8C8.44772 8 8 8.44772 8 9C8 9.55228 8.44772 10 9 10H15C15.5523 10 16 9.55228 16 9C16 8.44772 15.5523 8 15 8H9ZM9 12C8.44772 12 8 12.4477 8 13C8 13.5523 8.44772 14 9 14H15C15.5523 14 16 13.5523 16 13C16 12.4477 15.5523 12 15 12H9ZM9 16C8.44772 16 8 16.4477 8 17C8 17.5523 8.44772 18 9 18H13C13.5523 18 14 17.5523 14 17C14 16.4477 13.5523 16 13 16H9Z"
@@ -241,7 +227,7 @@ import Banner from '@/Components/Banner.vue';
                 </a>
 
                 <a :href="route('shorturl')"
-                class="flex items-center p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-950 group transition-all">
+                    class="flex items-center p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-950 group transition-all">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path opacity="0.5"
                             d="M3.46447 20.5355C4.92893 22 7.28595 22 12 22C16.714 22 19.0711 22 20.5355 20.5355C22 19.0711 22 16.714 22 12C22 7.28595 22 4.92893 20.5355 3.46447C19.0711 2 16.714 2 12 2C7.28595 2 4.92893 2 3.46447 3.46447C2 4.92893 2 7.28595 2 12C2 16.714 2 19.0711 3.46447 20.5355Z"
@@ -257,7 +243,7 @@ import Banner from '@/Components/Banner.vue';
                 </a>
 
                 <a :href="route('pricing')"
-                class="flex items-center p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-950 group transition-all">
+                    class="flex items-center p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-950 group transition-all">
                     <svg class="w-6 h-6 rotate-90" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path opacity="0.5"
                             d="M17.9665 6.55812L16.1369 4.72848L16.1369 4.72848C14.5913 3.18295 13.8186 2.41018 12.816 2.12264C11.8134 1.83509 10.7485 2.08083 8.61875 2.57231L7.39057 2.85574C5.5988 3.26922 4.70292 3.47597 4.08944 4.08944C3.47597 4.70292 3.26922 5.5988 2.85574 7.39057L2.85574 7.39057L2.57231 8.61875C2.08083 10.7485 1.83509 11.8134 2.12264 12.816C2.41018 13.8186 3.18295 14.5914 4.72848 16.1369L6.55812 17.9665L6.55813 17.9665C9.24711 20.6555 10.5916 22 12.2623 22C13.933 22 15.2775 20.6555 17.9665 17.9665L17.9665 17.9665L17.9665 17.9665C20.6555 15.2775 22 13.933 22 12.2623C22 10.5916 20.6555 9.24711 17.9665 6.55813L17.9665 6.55812Z"
@@ -367,9 +353,9 @@ import Banner from '@/Components/Banner.vue';
         </section>
 
         <div class="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
-            <nav class="px-5 py-3 text-white rounded-lg w-full">
+            <div class="px-5 py-3 text-white rounded-lg w-full">
                 <slot />
-            </nav>
+            </div>
         </div>
     </body>
 </template>
@@ -377,8 +363,13 @@ import Banner from '@/Components/Banner.vue';
 
 <script>
 export default {
+    props: {
+        userIsSubscribed: Boolean,
+        userIsOnTrial: Boolean,
+    },
     data() {
         return {
+            userTeamTreasholdReached : Boolean || true,
             sidebar: null,
             maxSidebar: null,
             miniSidebar: null,
@@ -388,13 +379,15 @@ export default {
             content: null,
             moon: null,
             sun: null,
-
             app_name: import.meta.env.VITE_APP_NAME,
             image: null
         }
     },
 
     mounted() {
+        this.userTeamTreasholdReached = this.$page.props.userTeamTreasholdReached;
+
+        
         this.sidebar = document.querySelector("aside");
         this.maxSidebar = document.querySelector(".max");
         this.miniSidebar = document.querySelector(".mini");
@@ -414,6 +407,9 @@ export default {
             }, {
                 preserveState: false,
             });
+        },
+        checkSubscriptionStatus () {
+            return  true;
         },
 
         logout() {

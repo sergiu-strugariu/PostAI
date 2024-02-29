@@ -19,7 +19,7 @@ class CreateTeam implements CreatesTeams
      */
     public function create(User $user, array $input): Team
     {
-        Gate::forUser($user)->authorize('create', Jetstream::newTeamModel());
+        Gate::forUser($user)->authorize('create-team', Jetstream::newTeamModel());
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
@@ -31,6 +31,8 @@ class CreateTeam implements CreatesTeams
             'name' => $input['name'],
             'personal_team' => false,
         ]));
+
+        $team->socialData()->create();
 
         return $team;
     }
