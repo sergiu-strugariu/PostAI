@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Post;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -34,7 +35,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+        $team = $user->currentTeam;
+        $form = $request->all();
+
+        $post = $team->posts()->create([
+            'title' => $form['title'],
+            'content' => $form['content'],
+            "tagsState" => $form['dynamicTagsState']
+        ]);
+        $path = "/user-". $user->id . "/" . "team-". $team->id ."/". "postsFiles" . "/" . "post-" . $post->id  . "/";
+
+        $photos = [];
+
+        foreach ($form['photos'] as $key => $photo) {
+    
+            $file_path = $path. "filemane" . ".extestion";
+            $photos[] = [
+                'path' => $file_path,
+                'order' => $key,
+            ];
+        }
+        if (count($photos) > 0) $post->photos()->createMany($photos);
     }
 
     /**

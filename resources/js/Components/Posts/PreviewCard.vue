@@ -19,7 +19,7 @@
         <Splide class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <SplideSlide v-if="this.formData.orderedFiles.length > 1"
                 v-for="( item, index ) in  this.formData.orderedFiles " :key="index" class="w-full h-72 ">
-                <img :src="item" alt="" class="object-contain h-full w-auto text-center mx-auto">
+                <img :src="item.url" alt="" class="object-contain h-full w-auto text-center mx-auto">
             </SplideSlide>
             <SplideSlide v-else>
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" alt="" class="object-contain h-80 w-auto text-center mx-auto">

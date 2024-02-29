@@ -2,13 +2,15 @@
 import UserLayout from '@/Layouts/UserLayout.vue';
 import FromCard from '@/Components/Posts/FormCard.vue';
 import PreviewCard from '@/Components/Posts/PreviewCard.vue';
+import { useForm } from '@inertiajs/vue3'
+
 </script>
 
 <template>
     <UserLayout title="Posts">
         <div class="container mx-auto flex flex-col lg:flex-row gap-5 ">
-            <FromCard :formData="PostForm" :PreviewData="PreviewData" :dragState="dragAnimationState"/>
-            <PreviewCard :PreviewData="PreviewData" :formData="PostForm"/>
+            <FromCard :formData="FormData" :PreviewData="PreviewData" :dragState="dragAnimationState" />
+            <PreviewCard :PreviewData="PreviewData" :formData="FormData" /> 
         </div>
     </UserLayout>
 </template>
@@ -19,18 +21,21 @@ export default {
     data() {
         return {
             dragAnimationState: false,
-            PostForm: {
+            PreviewData: {
+                ShowTags: false,
+            },
+            FormData: useForm({
                 title: '',
                 content: '',
-                images: null,
                 postDate: new Date(),
                 dynamicTagsState: false,
                 orderedFiles: [],
-            },
-            PreviewData: {
-                ShowTags: false,
-            }
+            }),
+
         };
+    },
+    methods: {
+
     },
     setup() {
         return {}

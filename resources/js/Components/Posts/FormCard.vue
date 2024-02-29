@@ -5,7 +5,7 @@ import draggable from 'vuedraggable'
 <template>
     <div
         class="flex flex-1 flex-col p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <form class="flex flex-col gap-4">
+        <form class="flex flex-col gap-4" @submit.prevent="submit">
             <input type="text"
                 class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Post Title" v-model="formData.title">
@@ -35,7 +35,7 @@ import draggable from 'vuedraggable'
                                 item-key="id" class="flex h-full w-full  gap-4 flex-wrap p-4 items-center justify-center">
                                 <template #item="{ element }">
                                     <div class=" bg-gray-900 p-2 px-4 rounded-lg flex-2">
-                                        <img :src="element" class="object-contain h-14 ">
+                                        <img :src="element.url" class="object-contain h-14 ">
                                     </div>
                                 </template>
                             </draggable>
@@ -68,8 +68,8 @@ import draggable from 'vuedraggable'
                 <span class="flex gap-4 flex-1  ">
                     <button type="button"
                         class=" flex-1  h-100 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Publish</button>
-                    <button type="button"
-                        class=" flex-1  h-100 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
+                    <button type="submit"
+                        class=" flex-1  h-100 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" >Save</button>
                 </span>
             </div>
         </form>
@@ -85,10 +85,23 @@ export default {
     methods: {
         handleFileUpload(event) {
             for (let i = 0; i < event.target.files.length; i++) {
-                this.formData.orderedFiles.push(
-                    URL.createObjectURL(event.target.files[i])
-                );
+                let file = {
+                        file: event.target.files[i],
+                        url: URL.createObjectURL(event.target.files[i])
+                    };
+                this.formData.orderedFiles.push(file);
             }
+        },
+        submit() {
+            this.formData.post(route('posts.store'), {
+                onSuccess: () => {
+                    console.log('success');
+                },
+                onError: (error) => {
+                    console.log(error);
+                },
+                onFinish: () => { },
+            });
         },
     },   
     components: {

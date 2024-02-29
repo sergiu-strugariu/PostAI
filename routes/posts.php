@@ -12,4 +12,5 @@ Route::prefix("twitter")->group(function () {
 Route::prefix("posts")->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('posts');
     Route::get('/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/store', [PostController::class, 'store'])->name('posts.store');
 });
