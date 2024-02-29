@@ -85,6 +85,9 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
                         <ResponsiveNavLink :href="route('pricing')" :active="route().current('pricing')">
                             Pricing
                         </ResponsiveNavLink>
+                                                <ResponsiveNavLink :href="route('pricing')" :active="route().current('pricing')">
+                            Pricing
+                        </ResponsiveNavLink>
 
                         <div class="flex justify-around py-2" v-if="!$page.props.auth.user">
                             <SecondaryButton>
