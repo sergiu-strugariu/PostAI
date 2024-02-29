@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d16127bee6c5298a669f1c6ac487251",
+    "content-hash": "23524bc4f06d00e86e57388692df9a22",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1655,6 +1655,62 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "hughbertd/oauth2-unsplash",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/HughbertD/oauth2-unsplash.git",
+                "reference": "f451f4a49dca4027f6edaa850d2fccdfa8721bfe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/HughbertD/oauth2-unsplash/zipball/f451f4a49dca4027f6edaa850d2fccdfa8721bfe",
+                "reference": "f451f4a49dca4027f6edaa850d2fccdfa8721bfe",
+                "shasum": ""
+            },
+            "require": {
+                "league/oauth2-client": ">=1.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Unsplash\\OAuth2\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hugh Downer",
+                    "email": "hugh.downer@gmail.com"
+                }
+            ],
+            "description": "Unsplash OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+            "keywords": [
+                "Authentication",
+                "SSO",
+                "Unsplash",
+                "authorization",
+                "identity",
+                "idp",
+                "oauth",
+                "oauth2",
+                "single sign on"
+            ],
+            "support": {
+                "issues": "https://github.com/HughbertD/oauth2-unsplash/issues",
+                "source": "https://github.com/HughbertD/oauth2-unsplash/tree/master"
+            },
+            "time": "2017-12-14T13:08:42+00:00"
         },
         {
             "name": "inertiajs/inertia-laravel",
@@ -8433,6 +8489,68 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
             },
             "time": "2023-12-08T13:03:43+00:00"
+        },
+        {
+            "name": "unsplash/unsplash",
+            "version": "3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unsplash/unsplash-php.git",
+                "reference": "cdb174beaf62d187db1a777cf5fb11ee554d85cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unsplash/unsplash-php/zipball/cdb174beaf62d187db1a777cf5fb11ee554d85cf",
+                "reference": "cdb174beaf62d187db1a777cf5fb11ee554d85cf",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3.0|^7.0",
+                "hughbertd/oauth2-unsplash": ">=1.0.3",
+                "league/oauth2-client": ">=1.4.2",
+                "php": ">=7.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.4.0",
+                "php-vcr/php-vcr": "~1.4",
+                "php-vcr/phpunit-testlistener-vcr": "~3.1",
+                "phpunit/phpunit": "~9.0",
+                "vlucas/phpdotenv": "~4.1.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Unsplash\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Klaassen",
+                    "email": "aaron@unsplash.com"
+                },
+                {
+                    "name": "Luke Chesser",
+                    "email": "luke@unsplash.com"
+                },
+                {
+                    "name": "Charles Lalonde",
+                    "email": "charles@pickcrew.com"
+                },
+                {
+                    "name": "Hugh Downer",
+                    "email": "hugh.downer@gmail.com"
+                }
+            ],
+            "description": "Wrapper to access the Unsplash API and photo library",
+            "support": {
+                "issues": "https://github.com/unsplash/unsplash-php/issues",
+                "source": "https://github.com/unsplash/unsplash-php/tree/3.2.1"
+            },
+            "time": "2022-01-17T20:32:58+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

@@ -26,7 +26,8 @@
         "laravel/tinker": "^2.8",
         "php-http/curl-client": "^2.3",
         "php-http/message": "^1.16",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "unsplash/unsplash": "^3.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.10",
