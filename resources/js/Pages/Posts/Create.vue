@@ -7,7 +7,7 @@ import PreviewCard from '@/Components/Posts/PreviewCard.vue';
 <template>
     <UserLayout title="Posts">
         <div class="container mx-auto flex flex-col lg:flex-row gap-5 ">
-            <FromCard :formData="PostForm" :PreviewData="PreviewData" :dragState="dragAnimationState"/>
+            <FromCard :PostForm="PostForm" :PreviewData="PreviewData" :dragAnimationState="dragAnimationState" />
             <PreviewCard :PreviewData="PreviewData" :formData="PostForm"/>
         </div>
     </UserLayout>
