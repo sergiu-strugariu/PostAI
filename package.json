@@ -24,6 +24,7 @@
         "@schedule-x/theme-default": "^1.18.0",
         "@splidejs/vue-splide": "^0.6.12",
         "v-calendar": "^3.1.2",
+        "vue3-tags-input": "^1.0.12",
         "vuedraggable": "^4.1.0"
     }
 }
