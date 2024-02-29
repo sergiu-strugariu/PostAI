@@ -7,6 +7,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
+
 const props = defineProps({
     team: Object,
     permissions: Object,
@@ -77,8 +78,14 @@ const updateTeamName = () => {
                     class="mt-1 block w-full"
                     :disabled="! permissions.canUpdateTeam"
                 />
-
                 <InputError :message="form.errors.email" class="mt-2" />
+                
+                <InputLabel for="name" value="Company Informaton" />
+                <textarea
+                    id="information"
+                    type="text"
+                    class="mt-1 block w-full h-fit max-h-20 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm bg-black bg-opacity-50"
+                    :disabled="! permissions.canUpdateTeam" />
             </div>
         </template>
 

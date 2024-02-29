@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.8",
+        "@schedule-x/calendar": "^1.18.0",
+        "@schedule-x/theme-default": "^1.18.0",
         "@splidejs/vue-splide": "^0.6.12",
         "v-calendar": "^3.1.2",
         "vuedraggable": "^4.1.0"

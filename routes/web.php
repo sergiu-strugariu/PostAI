@@ -2,12 +2,14 @@
 
 use Spark\Spark;
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Http\Controllers\MiniShopController;
 use App\Http\Controllers\ShortURLController;
+use App\Http\Controllers\TwitterAPIController;
 
 Route::get('/', [Controller::class, 'index'])->name('home');
 Route::get('/pricing', [Controller::class, 'pricing'])->name('pricing');
@@ -23,8 +25,6 @@ Route::prefix('/minishop')->group(function () {
     Route::post('/order', [MiniShopController::class, 'order'])->name('minishop.order');
     Route::get('/orders', [MiniShopController::class, 'orders'])->name('minishop.orders');
 });
-
-Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'])->name('redirectToUrl');
 
 Route::get('/subUserTest', function () {
     $user = Auth::user();
@@ -49,13 +49,11 @@ Route::get('/subUserTest', function () {
 
 })->name('test');
 
-/* Route::prefix('/twitter')->group(function () {
-    Route::get('/', [TwitterController::class, 'index'])->name('twitter');
-    Route::get('/login', [TwitterController::class, 'login'])->name('twitter.login');
-    Route::get('/callback', [TwitterController::class, 'callback'])->name('twitter.callback');
-    Route::get('/logout', [TwitterController::class, 'logout'])->name('twitter.logout');
-    Route::get('/error', [TwitterController::class, 'error'])->name('twitter.error');
-}); */
+Route::get('/test', [TwitterAPIController::class, 'getOauth'])->name('twitter-oauth');
+Route::get('/twitter/callback', [TwitterAPIController::class, 'callback'])->name('twitter-callback');
+
+
+/* Route::get('/{company}/{short_url}', [ShortURLController::class, 'redirectToUrl'])->name('redirectToUrl'); */
 
 require __DIR__ . '/posts.php';
 require __DIR__ . '/jetstream.php';

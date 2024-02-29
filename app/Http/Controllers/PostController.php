@@ -12,12 +12,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Posts/Index');
+        
     }
 
     public function test()
     {
-        return Inertia::render('Posts/Index');
+        //
     }
 
     /**
@@ -25,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Posts/Create');
     }
 
     /**
