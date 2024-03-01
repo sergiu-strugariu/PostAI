@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23524bc4f06d00e86e57388692df9a22",
+    "content-hash": "11d4af8f66433cc000e7833ff52faaea",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -5846,6 +5846,76 @@
                 "source": "https://github.com/ringcentral/psr7/tree/master"
             },
             "time": "2018-05-29T20:21:04+00:00"
+        },
+        {
+            "name": "samoritano/linkedin-api-php-client-v2",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/samoritano/linkedin-api-php-client.git",
+                "reference": "7f47c1032e8e43b9d02f08c546d8403b2ad67651"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/samoritano/linkedin-api-php-client/zipball/7f47c1032e8e43b9d02f08c546d8403b2ad67651",
+                "reference": "7f47c1032e8e43b9d02f08c546d8403b2ad67651",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "guzzlehttp/guzzle": "^7.3.0",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "@stable",
+                "vlucas/phpdotenv": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LinkedIn\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This package is an SDK for using LinkedIn V2 Marketing API. You can use it for managing Company Pages in this social network",
+            "homepage": "https://github.com/samoritano/linkedin-api-php-client",
+            "keywords": [
+                "Authentication",
+                "api",
+                "auth",
+                "authorization",
+                "client",
+                "integration",
+                "linked in",
+                "linkedin",
+                "linkedin-api",
+                "linkedin-client",
+                "linkedin-login",
+                "linkedin-sdk",
+                "linkedin-signin",
+                "linkedin.com",
+                "oauth",
+                "oauth2",
+                "oauth2-authentication",
+                "oauth2-client",
+                "php-linkedin",
+                "platform",
+                "rest",
+                "social",
+                "social network",
+                "wrapper"
+            ],
+            "support": {
+                "docs": "https://github.com/samoritano/linkedin-api-php-client/blob/master/README.md",
+                "issues": "https://github.com/samoritano/linkedin-api-php-client/issues",
+                "source": "https://github.com/samoritano/linkedin-api-php-client"
+            },
+            "time": "2023-12-09T10:57:25+00:00"
         },
         {
             "name": "spatie/macroable",
