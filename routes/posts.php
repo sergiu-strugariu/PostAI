@@ -12,6 +12,7 @@ Route::prefix('linkedin')->group(function () {
 });
 
 Route::prefix("unsplash")->group(function () {
+    Route::get('/photos', [UnsplashApiController::class, 'getPhotos'])->middleware(['auth'])->name('unsplash-photos');
     Route::get('/oauth', [UnsplashApiController::class, 'getOauth'])->middleware(['auth'])->name('unsplash-oauth');
     Route::get('/callback', [UnsplashApiController::class, 'callback'])->name('unsplash-callback');
 });

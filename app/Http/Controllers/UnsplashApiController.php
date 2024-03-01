@@ -11,16 +11,16 @@ class UnsplashApiController extends Controller
     private $connection;
     private $scopes = [
         'public',
-        'read_user',
+/*         'read_user',
         'write_user',
         'read_photos',
         'write_photos',
         'write_likes',
         'read_collections',
-        'write_collections'
+        'write_collections' */
     ];
 
-    public function __construct()
+/*     public function __construct()
     {
         $this->connection = HttpClient::init([
             'applicationId'    => '0NsI0DLBaYUT4A5T8q87Ps-NEPU-Pi36h0KabcQZCZM',
@@ -28,7 +28,7 @@ class UnsplashApiController extends Controller
             'callbackUrl'      => route('unsplash-callback'),
             'utmSource'        => 'asd',
         ]);
-    }
+    } */
 
     public function getOauth()
     {
@@ -49,5 +49,24 @@ class UnsplashApiController extends Controller
         $test = Search::photos('flowers');
 
         // dd($test);
+    }
+
+    public function getPhotos()
+    {
+        HttpClient::init([
+            'applicationId'    => '0NsI0DLBaYUT4A5T8q87Ps-NEPU-Pi36h0KabcQZCZM',
+            'secret'           => 'O6jwSrUQF4H4pn0I8JHxzttKmo7o9-hNUoknuqajRTQ',
+            'callbackUrl'      => route('unsplash-callback'),
+            'utmSource'        => 'asd',
+        ]);
+
+        $search = 'forest';
+        $page = 3;
+        $per_page = 15;
+        $orientation = 'landscape';
+
+        dd(Search::photos($search, $page, $per_page, $orientation));
+        
+        return; 
     }
 }
