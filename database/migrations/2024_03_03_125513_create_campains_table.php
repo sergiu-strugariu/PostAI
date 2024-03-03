@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('campains', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->boolean('published')->default(false);
             $table->foreignId('team_id')->constrained()->onDelete('cascade');
-            $table->foreignId('campain_id')->nullable();
-            $table->text('tags')->nullable();
+            $table->string("name");
+            $table->text("description");
+            $table->text("goal");
+            $table->text("niche");
+            $table->text("task");
+            $table->date("start");
+            $table->date("end");
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('campains');
     }
 };

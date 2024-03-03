@@ -13,6 +13,10 @@ class Post extends Model
     {
         return $this->belongsTo(Team::class);
     }
+    public function campain()
+    {
+        return $this->belongsTo(Campain::class);
+    }
     public function photos()
     {
         return $this->hasMany(PostPhoto::class);

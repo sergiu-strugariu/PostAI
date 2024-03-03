@@ -28,7 +28,6 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'content' => $this->faker->paragraph,
-            'team_id' => Team::factory()->create(),
             'tags' => 'laravel,php,testing,unit,feature,workshop,laracasts',
             'created_at' => now(),
         ];

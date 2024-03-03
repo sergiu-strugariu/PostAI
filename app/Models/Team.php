@@ -51,4 +51,9 @@ class Team extends JetstreamTeam
     {
         return $this->hasOne(TeamSocialData::class);
     }
+
+    public function campains()
+    {
+        return $this->hasMany(Campain::class);
+    }
 }
