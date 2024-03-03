@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Campain;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -20,7 +21,7 @@ class TestAccount extends Seeder
         $user = User::create([
             'name' => 'Test User',
             'email' => 'test@2devs.agency',
-            "role" => 'ADMIN',
+            "role" => 'USER',
             "password" => Hash::make("Test2024"), // Test2024
             "email_verified_at" => now(),
         ]);
@@ -47,6 +48,9 @@ class TestAccount extends Seeder
             "personal_team" => false
         ]);
         
+        Campain::factory(10)->create([
+            "team_id" => $team->id
+        ]);  
         
         $campain = $team->campains()->create([
             "name" => "Test Campain",
