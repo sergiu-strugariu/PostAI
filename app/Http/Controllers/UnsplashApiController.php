@@ -11,7 +11,8 @@ class UnsplashApiController extends Controller
     private $connection;
     private $scopes = [
         'public',
-/*         'read_user',
+        'read' /*
+        'read_user',
         'write_user',
         'read_photos',
         'write_photos',
@@ -26,8 +27,8 @@ class UnsplashApiController extends Controller
             'applicationId'    => '0NsI0DLBaYUT4A5T8q87Ps-NEPU-Pi36h0KabcQZCZM',
             'secret'           => 'O6jwSrUQF4H4pn0I8JHxzttKmo7o9-hNUoknuqajRTQ',
             'callbackUrl'      => route('unsplash-callback'),
-            'utmSource'        => 'asd',
-        ]);
+            'utmSource'         => 'asd',
+      ]);
     } */
 
     public function getOauth()
@@ -66,7 +67,7 @@ class UnsplashApiController extends Controller
         $orientation = 'landscape';
 
         dd(Search::photos($search, $page, $per_page, $orientation));
-        
-        return; 
+
+        return;
     }
 }

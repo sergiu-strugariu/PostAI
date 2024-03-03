@@ -16,6 +16,8 @@ class TeamFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Team::class;
+
     public function definition(): array
     {
         return [

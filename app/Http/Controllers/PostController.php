@@ -14,7 +14,6 @@ class PostController extends Controller
     public function index()
     {
         return Inertia::render('Posts/Index');
-        
     }
 
     public function test()
@@ -44,13 +43,13 @@ class PostController extends Controller
             'content' => $form['content'],
             "tagsState" => $form['dynamicTagsState']
         ]);
-        $path = "/user-". $user->id . "/" . "team-". $team->id ."/". "postsFiles" . "/" . "post-" . $post->id  . "/";
+        $path = "/user-" . $user->id . "/" . "team-" . $team->id . "/" . "postsFiles" . "/" . "post-" . $post->id  . "/";
 
         $photos = [];
 
         foreach ($form['photos'] as $key => $photo) {
-    
-            $file_path = $path. "filemane" . ".extestion";
+
+            $file_path = $path . "filemane" . ".extestion";
             $photos[] = [
                 'path' => $file_path,
                 'order' => $key,
@@ -72,7 +71,6 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
     }
 
     /**
@@ -80,7 +78,16 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Post::where('id', $request->id)->first();
+
+        if (!$post) return;
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'team_id' => $request->team_id,
+            "tags" => $request->dynamicTagsState
+        ]);
     }
 
     /**
